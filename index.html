@@ -1,620 +1,1749 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="https://p.186404.xyz/">
-  <title>WebNav Hub</title>
-  <style>
-    :root {
-      --primary-color: #ff9000;
-      --bg-color: #0d0d0d;
-      --card-bg-color: #1a1a1a;
-      --text-color: #fff;
-    }
-    
-    html {
-      font-size: 16px;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-    
-    header {
-      background-color: #000;
-      padding: 1rem;
-      text-align: center;
-    }
-    
-    header h1 {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin: 0;
-      text-transform: uppercase;
-    }
-    
-    nav {
-      background-color: var(--card-bg-color);
-      padding: 0.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    nav li {
-      margin: 0.3rem;
-    }
-    
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 0.5rem 0.8rem;
-      border-radius: 1.25rem;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    
-    nav a:hover, nav a.active {
-      background-color: var(--primary-color);
-      color: #000;
-    }
-    
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-    
-    .category-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 2rem 0 1rem;
-      color: var(--primary-color);
-      border-left: 4px solid var(--primary-color);
-      padding-left: 0.6rem;
-      text-transform: uppercase;
-    }
-    
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .link-card {
-      background-color: var(--card-bg-color);
-      border-radius: 5px;
-      padding: 1rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .link-card:hover {
-      background-color: #2a2a2a;
-      transform: translateY(-5px);
-    }
-    
-    .link-card i {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
-    }
-    
-    .link-card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-      color: var(--text-color);
-    }
-    
-    footer {
-      background-color: #000;
-      color: #ccc;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.75rem;
-    }
-    
-    footer nav {
-      margin-top: 0.6rem;
-      background-color: transparent;
-    }
-    
-    footer nav a {
-      color: #ccc;
-      margin: 0 0.6rem;
-      font-size: 0.75rem;
-    }
-    
-    @media (max-width: 768px) {
-      html {
-        font-size: 14px;
-      }
-      
-      .link-grid {
-        grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-      }
-      
-      nav {
-        padding: 0.3rem;
-      }
-      
-      nav a {
-        padding: 0.4rem 0.6rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      html {
-        font-size: 12px;
-      }
-      
-      .link-grid {
-        grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-      }
-      
-      header h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var navLinks = document.querySelectorAll('nav a');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova.dev | GitHub 创意开发者数字空间</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      navLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          navLinks.forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-          var targetId = this.getAttribute('href').split('#')[1];
-          var targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-
-            var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '#' + targetId;
-            window.history.pushState({path: newUrl}, '', newUrl);
-          }
-        });
-      });
-
-      function handleHashChange() {
-        var hash = window.location.hash;
-        if (hash) {
-          var targetElement = document.getElementById(hash.substring(1));
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-            var activeLink = document.querySelector('nav a[href="' + hash + '"]');
-            if (activeLink) {
-              navLinks.forEach(l => l.classList.remove('active'));
-              activeLink.classList.add('active');
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        gh: {
+                            bg: '#0d1117',
+                            card: '#161b22',
+                            border: '#30363d',
+                            text: '#e6edf3',
+                            muted: '#8b949e',
+                            green0: '#161b22',
+                            green1: '#0e4429',
+                            green2: '#006d32',
+                            green3: '#26a641',
+                            green4: '#39d353',
+                            accent: '#58a6ff',
+                            purple: '#bc8cff'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+    </script>
 
-      window.addEventListener('hashchange', handleHashChange);
-      handleHashChange();
+    <style>
+        :root {
+            --accent-primary: #39d353;
+            --accent-secondary: #58a6ff;
+            --accent-glow: rgba(57, 211, 83, 0.22);
+            --bg-primary: #090d13;
+            --card-bg: rgba(22, 27, 34, 0.72);
+            --border-color: rgba(48, 54, 61, 0.8);
+        }
 
-      var linkCards = document.querySelectorAll('.link-card');
-      linkCards.forEach(function(card) {
-        card.addEventListener('click', function() {
-          window.open(this.getAttribute('href'), '_blank');
-        });
-      });
-    });
-  </script>
+        [data-theme="cyber"] {
+            --accent-primary: #00f0ff;
+            --accent-secondary: #ff007f;
+            --accent-glow: rgba(0, 240, 255, 0.25);
+        }
+
+        [data-theme="sunset"] {
+            --accent-primary: #ff7b72;
+            --accent-secondary: #d2a8ff;
+            --accent-glow: rgba(255, 123, 114, 0.25);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: #e6edf3;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #58a6ff;
+        }
+
+        /* Bento Spotlight Card Effect */
+        .bento-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+        }
+        .bento-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+                var(--accent-glow),
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+        .bento-card:hover {
+            border-color: rgba(139, 148, 158, 0.45);
+            box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Contribution Cell Styling */
+        .contrib-cell {
+            width: 11px;
+            height: 11px;
+            border-radius: 2.5px;
+            transition: transform 0.12s ease, background-color 0.15s ease;
+        }
+        .contrib-cell:hover {
+            transform: scale(1.45);
+            z-index: 20;
+            outline: 1px solid #fff;
+        }
+        .snake-head {
+            background-color: #58a6ff !important;
+            box-shadow: 0 0 10px #58a6ff, 0 0 4px #ffffff !important;
+            transform: scale(1.3);
+            z-index: 15;
+        }
+        .snake-body {
+            background-color: #bc8cff !important;
+            box-shadow: 0 0 6px rgba(188, 140, 255, 0.8) !important;
+        }
+        .snake-food {
+            background-color: #f85149 !important;
+            box-shadow: 0 0 10px #f85149 !important;
+            animation: pulse 0.8s infinite;
+        }
+
+        /* Glitch / Gradient Text */
+        .text-gradient-gh {
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-primary) 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>WebNav Hub</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="#ai-search">Ai搜索</a></li>
-      <li><a href="#social">社交媒体</a></li>
-      <li><a href="#tools">实用工具</a></li>
-      <li><a href="#tech-news">科技资讯</a></li>
-      <li><a href="#cloud-storage">云存储</a></li>
-      <li><a href="#email">电子邮箱</a></li>
-    </ul>
-  </nav>
-   <main>
-    <h2 class="category-title" id="ai-search">Ai搜索</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://www.google.com">
-        <i class="fab fa-google"></i>
-        <h3>Google</h3>
-      </div>
-      <div class="link-card" href="https://www.bing.com">
-        <i class="fab fa-microsoft"></i>
-        <h3>Bing</h3>
-      </div>
-      <div class="link-card" href="https://websim.ai/">
-        <i class="fas fa-search"></i>
-        <h3>websim</h3>
-      </div>
-      <div class="link-card" href="https://chatgpt.com/">
-        <i class="fab fa-google"></i>
-        <h3>chatgpt</h3>
-      </div>
-      <div class="link-card" href="https://www.doubao.com/chat/">
-        <i class="fas fa-paw"></i>
-        <h3>傻豆包</h3>
-      </div>
-      <div class="link-card" href="https://yuanbao.tencent.com/">
-        <i class="fas fa-robot"></i>
-        <h3>傻元宝</h3>
-      </div>
-      <div class="link-card" href="https://poe.com/">
-        <i class="fas fa-robot"></i>
-        <h3>poe</h3>
-      </div>
-      <div class="link-card" href="https://claude.ai/">
-        <i class="fas fa-robot"></i>
-        <h3>claude</h3>
-      </div>
-      <div class="link-card" href="https://chandler.bet/">
-        <i class="fas fa-robot"></i>
-        <h3>ChandlerAi</h3>
-      </div>
-       <div class="link-card" href="https://mistral.ai/">
-        <i class="fas fa-brain"></i>
-        <h3>mistral</h3>
-      </div>
-      <div class="link-card" href="http://u.90tsg.com/">
-        <i class="fas fa-clinic-medical"></i>
-        <h3>循证医学UTD</h3>
-      </div>
-      <div class="link-card" href="https://www.medscape.com/">
-        <i class="fas fa-stethoscope"></i>
-        <h3>medscape</h3>
-      </div>
-       <div class="link-card" href="https://chat.oaichat.cc/">
-        <i class="fab fa-rocketchat"></i>
-        <h3>免费oaichat</h3>
-      </div>
-       <div class="link-card" href="https://app.leonardo.ai/">
-        <i class="far fa-images"></i>
-        <h3>leonardo.ai绘图</h3>
-      </div>
-       <div class="link-card" href="https://huggingface.co/">
-        <i class="fas fa-meh-rolling-eyes"></i>
-        <h3>huggingface</h3>
-      </div>
-      <div class="link-card" href="https://lmarena.ai/">
-        <i class="fas fa-robot"></i>
-        <h3>lmarena</h3>
-      </div>
-      <div class="link-card" href="https://kelaode.ai/">
-        <i class="fas fa-robot"></i>
-        <h3>kelaode</h3>
-      </div>
-      <div class="link-card" href="https://x.ai/">
-        <i class="fab fa-twitter-square"></i>
-        <h3>x.ai</h3>
-      </div>
-      <div class="link-card" href="https://ascvdpce.186404.xyz/">
-        <i class="fas fa-heartbeat"></i>
-        <h3>pce计算</h3>
-      </div>
-    </section>
 
-    <h2 class="category-title" id="social">社交媒体</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://www.facebook.com">
-        <i class="fab fa-facebook"></i>
-        <h3>Facebook</h3>
-      </div>
-      <div class="link-card" href="https://twitter.com">
-        <i class="fab fa-twitter"></i>
-        <h3>Twitter</h3>
-      </div>
-      <div class="link-card" href="https://www.instagram.com">
-        <i class="fab fa-instagram"></i>
-        <h3>Instagram</h3>
-      </div>
-      <div class="link-card" href="https://www.linkedin.com">
-        <i class="fab fa-linkedin"></i>
-        <h3>LinkedIn</h3>
-      </div>
-      <div class="link-card" href="https://www.tiktok.com">
-        <i class="fab fa-tiktok"></i>
-        <h3>TikTok</h3>
-      </div>
-      <div class="link-card" href="https://www.reddit.com">
-        <i class="fab fa-reddit"></i>
-        <h3>Reddit</h3>
-      </div>
-      <div class="link-card" href="https://github.com/">
-        <i class="fab fa-github"></i>
-        <h3>GitHub</h3>
-      </div>
-    </section>
+<body class="min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 relative" data-theme="matrix">
 
-    <h2 class="category-title" id="tools">实用工具</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://translate.google.com">
-        <i class="fas fa-language"></i>
-        <h3>Google翻译</h3>
-      </div>
-      <div class="link-card" href="https://d.186404.xyz/">
-        <i class="fas fa-link"></i>
-        <h3>短链</h3>
-      </div>
-      <div class="link-card" href="https://dynv6.com/">
-        <i class="fas fa-network-wired"></i>
-        <h3>dynv6</h3>
-      </div>
-      <div class="link-card" href="https://fast.com/">
-        <i class="fas fa-tachometer-alt"></i>
-        <h3>网速测试</h3>
-      </div>
-      <div class="link-card" href="https://www.cloudns.net/">
-        <i class="fas fa-cloud"></i>
-        <h3>Cloudns</h3>
-      </div>
-      <div class="link-card" href="https://www.cloudflare.com/zh-cn/">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Cloudflare</h3>
-      </div>
-      <div class="link-card" href="https://ygpy.net/">
-        <i class="fas fa-user-friends"></i>
-        <h3>一个朋友</h3>
-      </div>
-      <div class="link-card" href="https://notebooklm.google/">
-        <i class="fas fa-book"></i>
-        <h3>谷歌笔记</h3>
-      </div>
-      <div class="link-card" href="https://email.ml/">
-        <i class="fas fa-envelope"></i>
-        <h3>临时邮箱</h3>
-      </div>
-      <div class="link-card" href="https://www.ahhhhfs.com/">
-        <i class="fas fa-blog"></i>
-        <h3>A姐</h3>
-      </div>
-      <div class="link-card" href="https://ip.sb/">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>IP查询</h3>
-      </div>
-      <div class="link-card" href="https://img.186404.xyz/">
-        <i class="fas fa-image"></i>
-        <h3>图床</h3>
-      </div>
-      <div class="link-card" href="https://www.site.ac/">
-        <i class="fas fa-exchange-alt"></i>
-        <h3>Site域名转发</h3>
-      </div>
-      <div class="link-card" href="https://zh.go-to-library.sk/">
-        <i class="fas fa-book-reader"></i>
-        <h3>Z-Library</h3>
-      </div>
-      <div class="link-card" href="https://nic.us.kg/">
-        <i class="fas fa-globe"></i>
-        <h3>us.kg域名</h3>
-      </div>
-      <div class="link-card" href="https://www.spaceship.com/zh/">
-        <i class="fas fa-space-shuttle"></i>
-        <h3>Spaceship廉价域名</h3>
-      </div>
-      <div class="link-card" href="https://itsyebekhe.github.io/HiN-VPN/">
-        <i class="fas fa-walking"></i>
-        <h3>HiN-VPN</h3>
-      </div>
-      <div class="link-card" href="https://fontawesome.com/">
-        <i class="fas fa-icons"></i>
-        <h3>FontAwesome图标</h3>
-      </div>
-       <div class="link-card" href="https://scamalytics.com/">
-        <i class="fas fa-icons"></i>
-        <h3>ip清洁度查询</h3>
-      </div>
-      <div class="link-card" href="https://test-ipv6.com/">
-        <i class="fas fa-ethernet"></i>
-        <h3>test-ipv6</h3>
-      </div>
-      <div class="link-card" href="https://html.zone/ip">
-        <i class="fab fa-sourcetree"></i>
-        <h3>zone/ip</h3>
-      </div>
-      <div class="link-card" href="https://www.lumiproxy.com/zh-hans/online-proxy/proxysite/">
-        <i class="fas fa-unlock"></i>
-        <h3>免费网络代理</h3>
-      </div>
-      <div class="link-card" href="https://ipcheck.ing/">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>ipcheck</h3>
-      </div>
-       <div class="link-card" href="https://console.cron-job.org/">
-        <i class="fas fa-ethernet"></i>
-        <h3>定时任务cron-job</h3>
-      </div>
-      <div class="link-card" href="https://uptimerobot.com/">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>uptimerobot</h3>
-      </div>
-       <div class="link-card" href="https://forwardemail.net/">
-        <i class="fas fa-mail-bulk"></i>
-        <h3>forwardemail</h3>
-      </div>
-      <div class="link-card" href="https://improvmx.com/">
-        <i class="fas fa-mail-bulk"></i>
-        <h3>improvmx</h3>
-      </div>
-      <div class="link-card" href="https://gb.w404.nyc.mn/">
-        <i class="fab fa-github"></i>
-        <h3>github文件加速</h3>
-      </div>
-      <div class="link-card" href="https://hostry.com/">
-        <i class="fas fa-history"></i>
-        <h3>hostryDNS</h3>
-      </div>
-      <div class="link-card" href="https://www.sitelutions.com/">
-        <i class="fas fa-sitemap"></i>
-        <h3>免费域名sitelutions</h3>
-      </div>
-       <div class="link-card" href="https://www.changeip.com/">
-        <i class="fas fa-satellite-dish"></i>
-        <h3>免费域名changeip</h3>
-      </div>
-      <div class="link-card" href="https://dnsexit.com/">
-        <i class="fas fa-users"></i>
-        <h3>免费域名dnsexit</h3>
-      </div>
-       <div class="link-card" href="https://www.nslookup.io/">
-        <i class="fas fa-transgender"></i>
-        <h3>DNS查找nslookup</h3>
-      </div>
-       </div>
-       <div class="link-card" href="https://ping0.cc/">
-        <i class="fas fa-fingerprint"></i>
-        <h3>ping0</h3>
-      </div>
-      <div class="link-card" href="https://customer.l53.net/">
-        <i class="fas fa-fingerprint"></i>
-        <h3>L53免费域名</h3>
-      </div>
-      <div class="link-card" href="https://tools.pdf24.org/">
-        <i class="fas fa-file-pdf"></i>
-        <h3>PDF在线工具</h3>
-      </div>
-      <div class="link-card" href="http://free-proxy.cz/en/">
-        <i class="fab fa-internet-explorer"></i>
-        <h3>free-proxy</h3>
-      </div>
-    </section>
+    <!-- Interactive Constellation Canvas Background -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-55"></canvas>
 
-    <h2 class="category-title" id="tech-news">科技资讯</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://www.techcrunch.com">
-        <i class="fas fa-newspaper"></i>
-        <h3>TechCrunch</h3>
-      </div>
-      <div class="link-card" href="https://www.wired.com">
-        <i class="fas fa-bolt"></i>
-        <h3>Wired</h3>
-      </div>
-      <div class="link-card" href="https://www.theverge.com">
-        <i class="fas fa-laptop"></i>
-        <h3>The Verge</h3>
-      </div>
-      <div class="link-card" href="https://arstechnica.com">
-        <i class="fas fa-rocket"></i>
-        <h3>Ars Technica</h3>
-      </div>
-      <div class="link-card" href="https://www.engadget.com">
-        <i class="fas fa-mobile-alt"></i>
-        <h3>Engadget</h3>
-      </div>
-      <div class="link-card" href="https://techradar.com">
-        <i class="fas fa-satellite"></i>
-        <h3>TechRadar</h3>
-      </div>
-      <div class="link-card" href="https://b.186404.xyz/">
-        <i class="fas fa-blog"></i>
-        <h3>科技博客</h3>
-      </div>
-      <div class="link-card" href="https://www.cnbeta.com.tw/">
-        <i class="fas fa-info-circle"></i>
-        <h3>cnbeta</h3>
-      </div>
-    </section>
+    <!-- Ambient Radial Glows -->
+    <div class="fixed -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
 
-    <h2 class="category-title" id="cloud-storage">云存储</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://www.dropbox.com">
-        <i class="fas fa-cloud"></i>
-        <h3>Dropbox</h3>
-      </div>
-      <div class="link-card" href="https://drive.google.com">
-        <i class="fab fa-google-drive"></i>
-        <h3>Google Drive</h3>
-      </div>
-      <div class="link-card" href="https://onedrive.live.com">
-        <i class="fab fa-microsoft"></i>
-        <h3>OneDrive</h3>
-      </div>
-      <div class="link-card" href="https://www.box.com">
-        <i class="fas fa-box"></i>
-        <h3>Box</h3>
-      </div>
-      <div class="link-card" href="https://www.mediafire.com">
-        <i class="fas fa-file-alt"></i>
-        <h3>MediaFire</h3>
-      </div>
-      <div class="link-card" href="https://mega.nz">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <h3>MEGA</h3>
-      </div>
-      <div class="link-card" href="https://mypikpak.com/">
-        <i class="fas fa-cloud"></i>
-        <h3>PikPak</h3>
-      </div>
-    </section>
+    <!-- Sticky Glass Header -->
+    <header class="sticky top-0 z-40 border-b border-gh-border/70 bg-[#0d1117]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+            <!-- Left: Brand & Git Branch Status -->
+            <div class="flex items-center gap-3">
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400/20 to-blue-500/20 border border-emerald-400/40 flex items-center justify-center text-white shadow-inner group-hover:scale-105 transition">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-1.5">
+                            <span id="navUsername" class="font-mono font-bold text-sm tracking-tight text-white">linus-nova</span>
+                            <span class="text-xs px-1.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono">PRO</span>
+                        </div>
+                        <span class="text-[11px] font-mono text-gh-muted flex items-center gap-1">
+                            <i class="fa-solid fa-code-branch text-[10px] text-emerald-400"></i> main · 99.9% uptime
+                        </span>
+                    </div>
+                </a>
 
-    <h2 class="category-title" id="email">电子邮箱</h2>
-    <section class="link-grid">
-      <div class="link-card" href="https://mail.google.com">
-        <i class="fas fa-envelope"></i>
-        <h3>Gmail</h3>
-      </div>
-      <div class="link-card" href="https://outlook.live.com">
-        <i class="fab fa-microsoft"></i>
-        <h3>Outlook</h3>
-      </div>
-      <div class="link-card" href="https://cock.li/">
-        <i class="fas fa-envelope-open"></i>
-        <h3>cock邮箱</h3>
-      </div>
-      <div class="link-card" href="https://disroot.org/">
-        <i class="fas fa-envelope-square"></i>
-        <h3>disroot邮箱</h3>
-      </div>
-      <div class="link-card" href="https://www.protonmail.com">
-        <i class="fas fa-shield-alt"></i>
-        <h3>ProtonMail</h3>
-      </div>
-      <div class="link-card" href="https://mail.qq.com">
-        <i class="fab fa-qq"></i>
-        <h3>QQ邮箱</h3>
-      </div>
-      <div class="link-card" href="https://librem.one/">
-        <i class="fas fa-at"></i>
-        <h3>librem邮箱</h3>
-      </div>
-      <div class="link-card" href="https://www.linshigmail.com/">
-        <i class="fas fa-mail-bulk"></i>
-        <h3>临时谷歌邮箱</h3>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 WebNav Hub. 保留所有权利。</p>
-    <nav>
-      <a href="#">隐私政策</a>
-      <a href="#">使用条款</a>
-      <a href="#">联系我们</a>
-    </nav>
-  </footer>
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-1 ml-6 text-sm text-gh-muted">
+                    <a href="#overview" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                        <i class="fa-regular fa-compass text-xs"></i> 概览
+                    </a>
+                    <a href="#contributions" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-fire-flame-curved text-xs text-emerald-400"></i> 贡献热力图
+                    </a>
+                    <a href="#repositories" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                        <i class="fa-regular fa-folder-open text-xs text-blue-400"></i> 开源仓库
+                    </a>
+                    <a href="#terminal-section" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-terminal text-xs text-purple-400"></i> 交互终端
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Right: Live GitHub Sync, Theme Switcher & Command Palette Trigger -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Live GitHub API Sync Form -->
+                <form id="githubSyncForm" class="hidden sm:flex items-center bg-[#161b22] border border-gh-border rounded-xl px-2.5 py-1 focus-within:border-blue-400 transition">
+                    <i class="fa-solid fa-bolt text-xs text-amber-400 mr-2" title="输入任意真实 GitHub 用户名即可实时同步其主页数据"></i>
+                    <input
+                        id="githubUsernameInput"
+                        type="text"
+                        placeholder="输入 GitHub ID 实时渲染..."
+                        class="bg-transparent text-xs font-mono text-white placeholder-gh-muted focus:outline-none w-36 lg:w-44"
+                        aria-label="输入 GitHub 用户名同步"
+                    />
+                    <button type="submit" id="syncBtn" class="ml-1.5 px-2 py-0.5 text-[11px] font-mono rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition">
+                        同步
+                    </button>
+                </form>
+
+                <!-- Theme Cycle Button -->
+                <button id="themeBtn" onclick="cycleTheme()" class="p-2 rounded-xl bg-[#161b22] hover:bg-white/10 border border-gh-border text-gh-muted hover:text-white transition" title="切换视觉主题 (Matrix / Cyber / Sunset)">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm text-emerald-400"></i>
+                </button>
+
+                <!-- Audio FX Toggle -->
+                <button id="soundToggleBtn" onclick="toggleSound()" class="p-2 rounded-xl bg-[#161b22] hover:bg-white/10 border border-gh-border text-gh-muted hover:text-white transition" title="切换按键与游戏音效">
+                    <i id="soundIcon" class="fa-solid fa-volume-high text-sm text-blue-400"></i>
+                </button>
+
+                <!-- Command Palette Button -->
+                <button onclick="openCommandPalette()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#161b22] hover:bg-white/10 border border-gh-border text-xs font-mono text-gh-muted hover:text-white transition">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    <span class="hidden lg:inline">命令面板</span>
+                    <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-black/50 border border-gh-border text-gh-text">⌘K</kbd>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10 space-y-8">
+
+        <!-- Quick Preset Banner for Real GitHub Sync -->
+        <div class="bento-card rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-3 border-emerald-500/20">
+            <div class="flex items-center gap-2.5 text-xs sm:text-sm">
+                <span class="flex h-2.5 w-2.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-gh-muted">支持<strong class="text-white font-medium">实时 GitHub API 驱动</strong>：您可以输入自己的 GitHub ID 或点击右侧预设极客一键体验真实数据映射：</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5">
+                <button onclick="loadPresetProfile('default')" class="px-2.5 py-1 rounded-lg text-xs font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition">
+                    ✨ 默认创意档案 (Nova)
+                </button>
+                <button onclick="fetchRealGitHubUser('yyx990803')" class="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-gh-text border border-gh-border transition">
+                    @yyx990803 (尤雨溪)
+                </button>
+                <button onclick="fetchRealGitHubUser('antfu')" class="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-gh-text border border-gh-border transition">
+                    @antfu
+                </button>
+                <button onclick="fetchRealGitHubUser('torvalds')" class="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-gh-text border border-gh-border transition">
+                    @torvalds
+                </button>
+            </div>
+        </div>
+
+        <!-- SECTION 1: HERO BENTO GRID (Overview + Interactive Terminal + Core Metrics) -->
+        <section id="overview" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Left Column: Developer Identity Card (5 cols) -->
+            <div class="lg:col-span-5 bento-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative group">
+                <div>
+                    <!-- Top Avatar & Status Row -->
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="relative">
+                            <img
+                                id="profileAvatar"
+                                src="https://placehold.co/160x160/101827/39d353?text=LN"
+                                onerror="this.src='https://placehold.co/160x160/101827/39d353?text=DEV'"
+                                alt="Developer Avatar"
+                                class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-emerald-400/50 shadow-lg shadow-emerald-500/10"
+                            />
+                            <div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-[#0d1117] border border-gh-border text-[11px] font-mono flex items-center gap-1 shadow">
+                                <span>🚀</span>
+                                <span id="profileStatus" class="text-emerald-400">Shipping v4.2</span>
+                            </div>
+                        </div>
+
+                        <!-- Social & Action Buttons -->
+                        <div class="flex items-center gap-2">
+                            <button onclick="copyProfileUrl()" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-gh-border text-gh-muted hover:text-white transition" title="复制主页链接">
+                                <i class="fa-solid fa-share-nodes text-sm"></i>
+                            </button>
+                            <a id="profileGithubLink" href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs font-mono flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>Follow</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Name, Handle & Bio -->
+                    <div class="mt-6">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h1 id="profileName" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-gradient-gh">
+                                林星辰 · Linus Nova
+                            </h1>
+                            <span class="px-2 py-0.5 text-[11px] font-mono rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400">
+                                Arctic Code Vault Contributor
+                            </span>
+                        </div>
+                        <p id="profileHandle" class="font-mono text-sm text-gh-muted mt-0.5">@linus-nova · Full-Stack Architect & Creative Technologist</p>
+
+                        <p id="profileBio" class="mt-4 text-sm text-slate-300 leading-relaxed">
+                            热衷于构建高性能 WebGPU 图形引擎、AI 辅助研发工具链与优雅的开源组件库。相信代码不仅是逻辑的载体，更是数字时代的诗歌。
+                        </p>
+                    </div>
+
+                    <!-- Metadata Badges -->
+                    <div class="mt-5 flex flex-wrap gap-y-2 gap-x-4 text-xs text-gh-muted font-mono">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-emerald-400"></i>
+                            <span id="profileLocation">Shanghai / Remote</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-building text-blue-400"></i>
+                            <span id="profileCompany">@NovaLabs Open Source</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-regular fa-clock text-purple-400"></i>
+                            <span id="localTimeDisplay">UTC+8 · 12:00:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-gh-border/70">
+                    <!-- 4 Key GitHub Metrics -->
+                    <div class="grid grid-cols-4 gap-2 text-center">
+                        <div class="p-2.5 rounded-2xl bg-black/30 border border-gh-border/60">
+                            <div id="statRepos" class="text-lg sm:text-xl font-bold font-mono text-white">48</div>
+                            <div class="text-[11px] text-gh-muted">开源仓库</div>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-black/30 border border-gh-border/60">
+                            <div id="statStars" class="text-lg sm:text-xl font-bold font-mono text-amber-400">12.4k</div>
+                            <div class="text-[11px] text-gh-muted">斩获 Stars</div>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-black/30 border border-gh-border/60">
+                            <div id="statFollowers" class="text-lg sm:text-xl font-bold font-mono text-emerald-400">3.8k</div>
+                            <div class="text-[11px] text-gh-muted">Followers</div>
+                        </div>
+                        <div class="p-2.5 rounded-2xl bg-black/30 border border-gh-border/60">
+                            <div id="statCommits" class="text-lg sm:text-xl font-bold font-mono text-blue-400">2,849</div>
+                            <div class="text-[11px] text-gh-muted">年度提交</div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Achievements Bar -->
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-gh-muted">GitHub 成就勋章</span>
+                        <div class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-xs" title="Starstruck x4 (仓库超过 4096 Stars)">🌟</span>
+                            <span class="w-7 h-7 rounded-full bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center text-xs" title="Pull Shark x3 (合并超过 1024 PRs)">🦈</span>
+                            <span class="w-7 h-7 rounded-full bg-purple-500/15 border border-purple-400/40 flex items-center justify-center text-xs" title="Galaxy Brain (社区最佳解答者)">🧠</span>
+                            <span class="w-7 h-7 rounded-full bg-blue-500/15 border border-blue-400/40 flex items-center justify-center text-xs" title="Arctic Code Vault Contributor">❄️</span>
+                            <span class="w-7 h-7 rounded-full bg-rose-500/15 border border-rose-400/40 flex items-center justify-center text-xs" title="YOLO (直接合并主分支)">⚡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive GitHub README.md & ZSH Terminal (7 cols) -->
+            <div id="terminal-section" class="lg:col-span-7 bento-card rounded-3xl flex flex-col overflow-hidden border border-gh-border">
+                <!-- Terminal Window Header -->
+                <div class="px-4 py-3 bg-[#0d1117] border-b border-gh-border flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                        <span class="ml-2 font-mono text-xs text-gh-muted flex items-center gap-1.5">
+                            <i class="fa-solid fa-terminal text-emerald-400"></i>
+                            <span id="terminalTitle">linus-nova@github-os: ~/README.md (zsh)</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="runTerminalCommand('help')" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-gh-muted hover:text-white transition">help</button>
+                        <button onclick="runTerminalCommand('git log')" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-gh-muted hover:text-white transition">git log</button>
+                        <button onclick="runTerminalCommand('skills')" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-gh-muted hover:text-white transition">skills</button>
+                        <button onclick="runTerminalCommand('snake')" class="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition">🐍 snake</button>
+                        <button onclick="runTerminalCommand('clear')" class="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 hover:bg-white/10 text-gh-muted hover:text-white transition">clear</button>
+                    </div>
+                </div>
+
+                <!-- Terminal Scrollable Output -->
+                <div id="terminalOutput" class="p-5 font-mono text-xs sm:text-sm space-y-3 overflow-y-auto h-[320px] sm:h-[350px] bg-[#090d13]/90 text-slate-200">
+                    <!-- Dynamic terminal welcome content injected via JS -->
+                </div>
+
+                <!-- Terminal Command Input Line -->
+                <form id="terminalForm" class="px-4 py-3 bg-[#0d1117] border-t border-gh-border flex items-center gap-2 font-mono text-xs sm:text-sm">
+                    <span class="text-emerald-400 font-bold shrink-0">➜</span>
+                    <span class="text-blue-400 font-bold shrink-0">~</span>
+                    <span class="text-purple-400 shrink-0">git:(<span class="text-rose-400">main</span>)</span>
+                    <input
+                        id="terminalInput"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="输入命令，例如: help, whoami, ls repos, git log, theme cyber, snake..."
+                        class="w-full bg-transparent text-white placeholder-gh-muted/60 focus:outline-none"
+                    />
+                    <button type="submit" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-gh-muted hover:text-white shrink-0 transition">
+                        回车执行
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 365-DAY CONTRIBUTION HEATMAP + PLAYABLE GITHUB SNAKE -->
+        <section id="contributions" class="bento-card rounded-3xl p-6 sm:p-7">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
+                <div>
+                    <div class="flex items-center gap-2.5">
+                        <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-cubes-stacked text-emerald-400"></i>
+                            <span>开源贡献绿墙 & 贪吃蛇竞技场</span>
+                        </h2>
+                        <span id="snakeScoreBadge" class="hidden px-2.5 py-0.5 rounded-full text-xs font-mono bg-purple-500/20 border border-purple-400/40 text-purple-300">
+                            🐍 吞噬 Commits: <strong id="snakeScore">0</strong>
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gh-muted mt-1">
+                        悬停查看每日 Commit 详情，点击方格可<span class="text-emerald-400">自由绘制像素图案</span>，或一键启动经典 <span class="text-blue-400 font-mono">GitHub Contribution Snake</span> 贪吃蛇模式！
+                    </p>
+                </div>
+
+                <!-- Controls for Heatmap & Snake -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Pixel Art Preset Button -->
+                    <button onclick="drawPixelTextOnGrid('HELLO WORLD')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-gh-border text-xs font-mono text-gh-text transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-paintbrush text-amber-400"></i>
+                        <span>绘制像素字</span>
+                    </button>
+                    <button onclick="randomizeContributions()" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-gh-border text-xs font-mono text-gh-text transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-dice text-blue-400"></i>
+                        <span>随机生成热力图</span>
+                    </button>
+                    <button id="toggleSnakeBtn" onclick="toggleContributionSnake()" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-xs font-mono text-emerald-300 font-semibold transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/10">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span id="snakeBtnText">启动贪吃蛇模式 (AI/手动)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Snake Direction Controls (Shown when Snake is active on Mobile/Desktop) -->
+            <div id="snakeControlsBar" class="hidden mb-4 p-3 rounded-2xl bg-black/40 border border-blue-500/30 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2 text-xs font-mono text-blue-300">
+                    <span class="px-2 py-0.5 rounded bg-blue-500/20 border border-blue-400/30" id="snakeModeLabel">🤖 AI 自动寻路吞噬中</span>
+                    <span>使用键盘 <kbd class="px-1.5 py-0.5 bg-white/10 rounded">W</kbd><kbd class="px-1.5 py-0.5 bg-white/10 rounded">A</kbd><kbd class="px-1.5 py-0.5 bg-white/10 rounded">S</kbd><kbd class="px-1.5 py-0.5 bg-white/10 rounded">D</kbd> 或右侧方向键即可随时接管手动控制！</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <button onclick="setSnakeManualDir(0, -1)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"><i class="fa-solid fa-arrow-up text-xs"></i></button>
+                    <button onclick="setSnakeManualDir(-1, 0)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"><i class="fa-solid fa-arrow-left text-xs"></i></button>
+                    <button onclick="setSnakeManualDir(0, 1)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"><i class="fa-solid fa-arrow-down text-xs"></i></button>
+                    <button onclick="setSnakeManualDir(1, 0)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"><i class="fa-solid fa-arrow-right text-xs"></i></button>
+                    <button onclick="switchSnakeAutopilot()" class="ml-2 px-2.5 py-1 rounded-lg bg-purple-500/20 border border-purple-400/30 text-purple-300 text-xs font-mono">
+                        切换 AI 托管
+                    </button>
+                </div>
+            </div>
+
+            <!-- Heatmap Grid Wrapper -->
+            <div class="overflow-x-auto pb-2">
+                <div class="min-w-[740px]">
+                    <!-- Months Row -->
+                    <div class="flex justify-between text-[11px] font-mono text-gh-muted mb-2 px-6">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                        <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <!-- Day Labels -->
+                        <div class="flex flex-col justify-between h-[92px] text-[10px] font-mono text-gh-muted pr-1">
+                            <span>Mon</span>
+                            <span>Wed</span>
+                            <span>Fri</span>
+                        </div>
+                        <!-- 52 Weeks x 7 Days Container -->
+                        <div id="heatmapGrid" class="grid grid-flow-col grid-rows-7 gap-[3px] flex-1 select-none">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heatmap Footer & Tooltip readout -->
+            <div class="mt-4 pt-3 border-t border-gh-border/60 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-gh-muted">
+                <div id="contribHoverReadout" class="text-slate-300 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                    <span>过去一年累计完成 <strong class="text-white">2,849</strong> 次代码提交 · 最长连续打卡 <strong class="text-emerald-400">64</strong> 天</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span>Less</span>
+                    <span class="w-3 h-3 rounded-sm bg-[#161b22] border border-white/10 inline-block"></span>
+                    <span class="w-3 h-3 rounded-sm bg-[#0e4429] inline-block"></span>
+                    <span class="w-3 h-3 rounded-sm bg-[#006d32] inline-block"></span>
+                    <span class="w-3 h-3 rounded-sm bg-[#26a641] inline-block"></span>
+                    <span class="w-3 h-3 rounded-sm bg-[#39d353] inline-block"></span>
+                    <span>More</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PINNED & FEATURED REPOSITORIES WITH FILTERING & ARCHITECTURE PREVIEW -->
+        <section id="repositories" class="space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-book-bookmark text-blue-400"></i>
+                        <span>精选开源仓库 (Featured Repositories)</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gh-muted mt-1">
+                        支持按编程语言筛选、关键词检索，点击任意仓库可预览 README 架构与一键复制 <code class="text-emerald-400 font-mono">git clone</code> 命令
+                    </p>
+                </div>
+
+                <!-- Filter Pills & Search -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <div id="langFilterGroup" class="flex flex-wrap items-center gap-1.5 bg-[#161b22] p-1 rounded-xl border border-gh-border">
+                        <button onclick="filterRepos('ALL')" data-lang="ALL" class="lang-btn px-3 py-1 rounded-lg text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition">全部</button>
+                        <button onclick="filterRepos('TypeScript')" data-lang="TypeScript" class="lang-btn px-3 py-1 rounded-lg text-xs font-mono text-gh-muted hover:text-white transition">TypeScript</button>
+                        <button onclick="filterRepos('Rust')" data-lang="Rust" class="lang-btn px-3 py-1 rounded-lg text-xs font-mono text-gh-muted hover:text-white transition">Rust</button>
+                        <button onclick="filterRepos('Python')" data-lang="Python" class="lang-btn px-3 py-1 rounded-lg text-xs font-mono text-gh-muted hover:text-white transition">Python</button>
+                    </div>
+
+                    <div class="relative">
+                        <i class="fa-solid fa-filter text-xs text-gh-muted absolute left-3 top-1/2 -translate-y-1/2"></i>
+                        <input
+                            id="repoSearchInput"
+                            oninput="renderRepositories()"
+                            type="text"
+                            placeholder="搜索仓库名称或标签..."
+                            class="pl-8 pr-3 py-1.5 rounded-xl bg-[#161b22] border border-gh-border text-xs font-mono text-white placeholder-gh-muted focus:outline-none focus:border-blue-400 w-44 sm:w-52"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repositories Grid -->
+            <div id="reposGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 4: TECH STACK DNA & RECENT COMMIT STREAM -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Left: Language Telemetry & Tech Stack Matrix (6 cols) -->
+            <div class="lg:col-span-6 bento-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-dna text-purple-400"></i>
+                            <span>代码语言基因 & 技术栈矩阵</span>
+                        </h3>
+                        <span class="text-xs font-mono text-gh-muted">Polyglot Telemetry</span>
+                    </div>
+
+                    <!-- GitHub-Style Multi-Language Progress Bar -->
+                    <div id="langProgressBar" class="w-full h-3 rounded-full overflow-hidden flex gap-0.5 bg-black/40 p-0.5 border border-gh-border">
+                        <div style="width: 42%" class="bg-[#3178c6] h-full rounded-l-full" title="TypeScript 42%"></div>
+                        <div style="width: 26%" class="bg-[#dea584] h-full" title="Rust 26%"></div>
+                        <div style="width: 18%" class="bg-[#3572A5] h-full" title="Python 18%"></div>
+                        <div style="width: 9%" class="bg-[#41b883] h-full" title="Vue / GLSL 9%"></div>
+                        <div style="width: 5%" class="bg-[#00ADD8] h-full rounded-r-full" title="Go 5%"></div>
+                    </div>
+
+                    <!-- Language Legend -->
+                    <div id="langLegend" class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
+                        <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#3178c6]"></span><span>TypeScript</span><span class="text-gh-muted">42%</span></div>
+                        <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#dea584]"></span><span>Rust</span><span class="text-gh-muted">26%</span></div>
+                        <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#3572A5]"></span><span>Python</span><span class="text-gh-muted">18%</span></div>
+                        <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#41b883]"></span><span>WebGL/GLSL</span><span class="text-gh-muted">9%</span></div>
+                        <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#00ADD8]"></span><span>Go</span><span class="text-gh-muted">5%</span></div>
+                    </div>
+
+                    <!-- Interactive Tech Stack Categorized Tags -->
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <div class="text-xs font-mono text-gh-muted mb-2 uppercase tracking-wider">前端与图形架构 (Frontend & Graphics)</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-react text-cyan-400"></i> React 19 / Next.js</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-vuejs text-emerald-400"></i> Vue 3 / Nuxt</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-cube text-purple-400"></i> Three.js / WebGPU</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-wind text-sky-400"></i> Tailwind CSS</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="text-xs font-mono text-gh-muted mb-2 uppercase tracking-wider">系统、后端与 AI 工具链 (Systems & AI)</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-rust text-orange-400"></i> Rust / WebAssembly</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-node-js text-green-400"></i> Node.js / Bun</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-brain text-pink-400"></i> PyTorch / LLM Agents</span>
+                                <span class="px-3 py-1 rounded-xl bg-white/5 border border-gh-border text-xs font-mono text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-docker text-blue-400"></i> Docker / K8s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive SSH / GPG Key Bar -->
+                <div class="mt-6 pt-4 border-t border-gh-border/60 flex items-center justify-between gap-2 text-xs font-mono">
+                    <div class="flex items-center gap-2 text-gh-muted truncate">
+                        <i class="fa-solid fa-key text-amber-400"></i>
+                        <span class="truncate">GPG: <code class="text-slate-300">4AEE 18F8 3AFD EB23 NOVA 9901</code></span>
+                    </div>
+                    <button onclick="copyText('ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINovaDevCreativeGitHubKey linus@nova.dev', 'SSH 公钥已复制到剪贴板')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-gh-border text-slate-300 shrink-0 transition">
+                        复制 SSH Key
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Live Git Activity Stream & Release Timeline (6 cols) -->
+            <div class="lg:col-span-6 bento-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-5">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-code-commit text-emerald-400"></i>
+                            <span>最近开源动态 (Recent Activity Stream)</span>
+                        </h3>
+                        <span class="px-2 py-0.5 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                            Verified Signed
+                        </span>
+                    </div>
+
+                    <!-- Git Timeline List -->
+                    <div id="activityTimeline" class="relative pl-6 border-l border-gh-border space-y-5">
+                        <!-- Item 1 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#0d1117] border-2 border-emerald-400 flex items-center justify-center"></span>
+                            <div class="flex items-center justify-between text-xs font-mono text-gh-muted">
+                                <span><strong class="text-white">Merged PR #412</strong> into <code class="text-blue-400">nova-engine/main</code></span>
+                                <span>2 hours ago</span>
+                            </div>
+                            <p class="text-sm text-slate-200 font-medium mt-1">
+                                feat(renderer): 引入 WebGPU 计算着色器粒子管线，帧率提升 340%
+                            </p>
+                            <div class="mt-1.5 flex items-center gap-2 text-[11px] font-mono">
+                                <span class="text-emerald-400">+1,420</span>
+                                <span class="text-rose-400">-318</span>
+                                <span class="px-1.5 py-0.2 rounded bg-white/5 text-gh-muted">commit 8f92a1c</span>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#0d1117] border-2 border-purple-400 flex items-center justify-center"></span>
+                            <div class="flex items-center justify-between text-xs font-mono text-gh-muted">
+                                <span><strong class="text-white">Released v2.8.0</strong> in <code class="text-purple-400">git-copilot-cli</code></span>
+                                <span>Yesterday</span>
+                            </div>
+                            <p class="text-sm text-slate-200 font-medium mt-1">
+                                支持本地 Ollama 与多模型流式 Commit Message 自动生成与语义化 Code Review
+                            </p>
+                            <div class="mt-1.5 flex items-center gap-2 text-[11px] font-mono">
+                                <span class="px-2 py-0.5 rounded-md bg-purple-500/15 text-purple-300 border border-purple-500/30">v2.8.0 Latest</span>
+                                <span class="text-gh-muted">18,400+ downloads</span>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative group">
+                            <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-[#0d1117] border-2 border-blue-400 flex items-center justify-center"></span>
+                            <div class="flex items-center justify-between text-xs font-mono text-gh-muted">
+                                <span><strong class="text-white">Opened Issue #89</strong> in <code class="text-amber-400">rust-wasm-dsp</code></span>
+                                <span>3 days ago</span>
+                            </div>
+                            <p class="text-sm text-slate-200 font-medium mt-1">
+                                RFC: 零拷贝 SharedArrayBuffer 实时音频频谱分析器架构设计提案
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Sponsor / Star Callout -->
+                <div class="mt-6 pt-4 border-t border-gh-border/60 flex items-center justify-between gap-3">
+                    <div class="text-xs text-gh-muted">
+                        喜欢这些开源项目？欢迎在 GitHub 上点亮一颗 <strong class="text-amber-400">Star ★</strong>
+                    </div>
+                    <button onclick="triggerStarConfetti()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-pink-500/20 hover:from-amber-500/30 hover:to-pink-500/30 border border-amber-400/40 text-amber-300 text-xs font-mono font-semibold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-star text-amber-400"></i>
+                        <span>给主页点亮 Star (<span id="pageStarCounter">1,024</span>)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gh-border/60 text-xs font-mono text-gh-muted flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-github text-base text-white"></i>
+            <span>Crafted with HTML5, Tailwind CSS & Canvas · GitHub Creative OS Edition</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="openCommandPalette()" class="hover:text-white transition">快捷键 ⌘K</button>
+            <span>·</span>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-emerald-400 transition">返回顶部 ↑</button>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: REPOSITORY README & ARCHITECTURE PREVIEW MODAL -->
+    <div id="repoModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div class="bento-card w-full max-w-2xl rounded-3xl border border-gh-border bg-[#0d1117] overflow-hidden shadow-2xl">
+            <div class="px-6 py-4 bg-[#161b22] border-b border-gh-border flex items-center justify-between">
+                <div class="flex items-center gap-2.5 font-mono">
+                    <i class="fa-solid fa-book text-blue-400"></i>
+                    <span id="modalRepoName" class="font-bold text-white text-base">nova-engine</span>
+                    <span id="modalRepoLang" class="px-2 py-0.5 text-[11px] rounded-full bg-blue-500/15 text-blue-300 border border-blue-500/30">TypeScript</span>
+                </div>
+                <button onclick="closeRepoModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-gh-muted hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+                <p id="modalRepoDesc" class="text-sm text-slate-300 leading-relaxed"></p>
+
+                <!-- Clone Box -->
+                <div class="p-3 rounded-2xl bg-black/50 border border-gh-border flex items-center justify-between gap-2 font-mono text-xs">
+                    <code id="modalCloneCmd" class="text-emerald-400 truncate">git clone https://github.com/linus-nova/nova-engine.git</code>
+                    <button onclick="copyModalClone()" class="px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 shrink-0 transition">
+                        复制命令
+                    </button>
+                </div>
+
+                <!-- Simulated README.md Preview -->
+                <div class="rounded-2xl border border-gh-border overflow-hidden">
+                    <div class="px-4 py-2 bg-[#161b22] border-b border-gh-border text-xs font-mono text-gh-muted flex items-center gap-2">
+                        <i class="fa-brands fa-markdown text-blue-400"></i>
+                        <span>README.md · 架构特性速览</span>
+                    </div>
+                    <div id="modalReadmeBody" class="p-4 bg-[#090d13] text-xs sm:text-sm font-mono text-slate-300 space-y-2 leading-relaxed">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <div class="flex items-center gap-4 text-xs font-mono text-gh-muted">
+                        <span><i class="fa-regular fa-star text-amber-400 mr-1"></i><strong id="modalRepoStars" class="text-white">0</strong> Stars</span>
+                        <span><i class="fa-solid fa-code-fork text-blue-400 mr-1"></i><strong id="modalRepoForks" class="text-white">0</strong> Forks</span>
+                    </div>
+                    <a id="modalRepoLink" href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 font-mono font-semibold text-xs transition flex items-center gap-1.5">
+                        <span>在 GitHub 中打开</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: COMMAND PALETTE (Cmd/Ctrl + K) -->
+    <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden items-start justify-center pt-20 p-4 bg-black/75 backdrop-blur-md">
+        <div class="w-full max-w-lg rounded-2xl border border-gh-border bg-[#161b22] overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 border-b border-gh-border flex items-center gap-3">
+                <i class="fa-solid fa-terminal text-emerald-400 text-sm"></i>
+                <input
+                    id="cmdPaletteInput"
+                    oninput="renderCommandPaletteItems()"
+                    type="text"
+                    placeholder="输入指令搜索操作 (例如: 贪吃蛇, 同步 GitHub, 切换主题, 复制邮箱)..."
+                    class="w-full bg-transparent text-sm font-mono text-white placeholder-gh-muted focus:outline-none"
+                />
+                <button onclick="closeCommandPalette()" class="px-2 py-0.5 rounded text-[10px] font-mono bg-white/10 text-gh-muted">ESC</button>
+            </div>
+            <div id="cmdPaletteList" class="p-2 max-h-72 overflow-y-auto space-y-1 font-mono text-xs">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        /* ============================================================================
+         * 1. STATE & CURATED DEFAULT DEVELOPER PROFILE DATA
+         * ============================================================================ */
+        let soundEnabled = true;
+        let currentThemeIndex = 0;
+        const themes = ['matrix', 'cyber', 'sunset'];
+        let currentLangFilter = 'ALL';
+        let pageStars = 1024;
+
+        const defaultProfile = {
+            username: 'linus-nova',
+            name: '林星辰 · Linus Nova',
+            handle: '@linus-nova · Full-Stack Architect & Creative Technologist',
+            bio: '热衷于构建高性能 WebGPU 图形引擎、AI 辅助研发工具链与优雅的开源组件库。相信代码不仅是逻辑的载体，更是数字时代的诗歌。',
+            location: 'Shanghai / Remote',
+            company: '@NovaLabs Open Source',
+            avatar: 'https://placehold.co/160x160/0f172a/39d353?text=LN',
+            status: 'Shipping v4.2',
+            reposCount: 48,
+            starsCount: '12.4k',
+            followersCount: '3.8k',
+            commitsCount: '2,849',
+            githubUrl: 'https://github.com'
+        };
+
+        const defaultRepositories = [
+            {
+                name: 'nova-webgpu-engine',
+                description: '🚀 轻量级零依赖 WebGPU 3D 渲染与百万级粒子物理计算引擎，支持 WGSL 热重载与节点式材质系统。',
+                language: 'TypeScript',
+                langColor: '#3178c6',
+                stars: 4820,
+                forks: 412,
+                topics: ['webgpu', 'graphics', 'threejs', 'shader'],
+                url: 'https://github.com',
+                readme: `# Nova WebGPU Engine\n- ⚡ 基于原生 WebGPU Compute Shader，同屏可实时解算 2,000,000+ 流体粒子\n- 📦 Tree-shaking 友好，核心包体积仅 14KB (gzipped)\n- 🎨 内置 PBR 材质、后处理辉光 (Bloom) 与射线追踪阴影支持`
+            },
+            {
+                name: 'git-copilot-cli',
+                description: '🤖 用 Rust 编写的极速终端 Git AI 助手：一键根据 git diff 自动生成符合 Conventional Commits 规范的提交信息与 PR 摘要。',
+                language: 'Rust',
+                langColor: '#dea584',
+                stars: 3590,
+                forks: 285,
+                topics: ['rust', 'cli', 'ai-agent', 'git'],
+                url: 'https://github.com',
+                readme: `# git-copilot-cli\n- 🦀 纯 Rust 打造，冷启动耗时 < 8ms\n- 🔌 支持 OpenAI / Claude / DeepSeek 与本地 Ollama 模型无缝切换\n- 🛡️ 内置敏感密钥扫描器，防止 API Key 被误提交至远程仓库`
+            },
+            {
+                name: 'bento-ui-kit',
+                description: '✨ 专为极客个人主页与 SaaS 仪表盘设计的暗黑风 Bento Grid 响应式组件库，内置鼠标聚光灯追踪与微交互动画。',
+                language: 'TypeScript',
+                langColor: '#3178c6',
+                stars: 2150,
+                forks: 198,
+                topics: ['tailwindcss', 'bento-grid', 'ui-components', 'design-system'],
+                url: 'https://github.com',
+                readme: `# Bento UI Kit\n- 💎 30+ 开箱即用的高颜值 Bento 卡片模板\n- 🌈 支持 Matrix / Cyber / Sunset 多套 CSS 变量主题切换\n- 📱 完美适配移动端触控与桌面端键盘无障碍导航`
+            },
+            {
+                name: 'wasm-audio-synth',
+                description: '🎹 基于 Rust + WebAssembly + AudioWorklet 的浏览器端低延迟数字音频合成器与实时 FFT 频谱可视化库。',
+                language: 'Rust',
+                langColor: '#dea584',
+                stars: 1120,
+                forks: 89,
+                topics: ['webassembly', 'audio-dsp', 'rust', 'synthesizer'],
+                url: 'https://github.com',
+                readme: `# WASM Audio Synth\n- 🎵 SIMD 加速的快速傅里叶变换 (FFT) 与多复音振荡器\n- 🔊 端到端音频缓冲延迟低于 4.5ms`
+            },
+            {
+                name: 'autonomous-code-reviewer',
+                description: '🧠 基于多智能体协作 (Multi-Agent) 的 GitHub Action 自动代码审查工具，精准定位并发竞态与内存泄漏隐患。',
+                language: 'Python',
+                langColor: '#3572A5',
+                stars: 860,
+                forks: 74,
+                topics: ['python', 'llm', 'github-actions', 'code-review'],
+                url: 'https://github.com',
+                readme: `# Autonomous Code Reviewer\n- 🔍 AST 语法树静态分析 + LLM 语义推理双引擎驱动\n- 💬 直接在 GitHub Pull Request 行内生成修复补丁建议`
+            },
+            {
+                name: 'neural-commit-graph',
+                description: '🌌 将任意 Git 仓库的十年提交历史转化为可交互的 3D 星系演化图谱，直观展示每位贡献者的代码轨迹。',
+                language: 'TypeScript',
+                langColor: '#3178c6',
+                stars: 640,
+                forks: 52,
+                topics: ['visualization', 'git-history', 'canvas', 'webgl'],
+                url: 'https://github.com',
+                readme: `# Neural Commit Graph\n- 🪐 将分支合并与文件演进映射为引力星团\n- 🎥 支持一键导出 4K 60FPS 项目演进延时摄影视频`
+            }
+        ];
+
+        let activeRepositories = [...defaultRepositories];
+
+        /* ============================================================================
+         * 2. WEB AUDIO MICRO-SYNTHESIZER (No external audio files needed)
+         * ============================================================================ */
+        let audioCtx = null;
+        function playTone(freq = 520, duration = 0.06, type = 'sine') {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                // Ignore audio context restrictions
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-sm text-blue-400';
+                playTone(660, 0.08, 'triangle');
+                showToast('🔊 交互音效已开启', 'info');
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-sm text-gh-muted';
+                showToast('🔇 交互音效已静音', 'info');
+            }
+        }
+
+        /* ============================================================================
+         * 3. TOAST NOTIFICATIONS & CLIPBOARD (Iframe-Safe)
+         * ============================================================================ */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const borderColors = {
+                success: 'border-emerald-500/50 text-emerald-300',
+                info: 'border-blue-500/50 text-blue-300',
+                warn: 'border-amber-500/50 text-amber-300'
+            };
+            toast.className = `px-4 py-2.5 rounded-2xl bg-[#161b22]/95 border ${borderColors[type] || borderColors.success} shadow-xl backdrop-blur-md font-mono text-xs flex items-center gap-2 transition-all duration-300 transform translate-y-2 opacity-0`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 2800);
+        }
+
+        function copyText(text, successMsg = '已复制到剪贴板！') {
+            playTone(720, 0.06, 'sine');
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg, 'success');
+            } catch (err) {
+                showToast('复制失败，请手动复制', 'warn');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function copyProfileUrl() {
+            copyText(window.location.href, '🔗 个人主页链接已复制到剪贴板！');
+        }
+
+        function cycleTheme(specificTheme) {
+            if (specificTheme && themes.includes(specificTheme)) {
+                currentThemeIndex = themes.indexOf(specificTheme);
+            } else {
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            }
+            const nextTheme = themes[currentThemeIndex];
+            document.body.setAttribute('data-theme', nextTheme);
+            playTone(580 + currentThemeIndex * 110, 0.09, 'triangle');
+            const names = { matrix: 'Matrix 极客绿', cyber: 'Cyber 赛博霓虹', sunset: 'Sunset 暮光紫' };
+            showToast(`🎨 已切换至「${names[nextTheme]}」主题`, 'info');
+        }
+
+        /* ============================================================================
+         * 4. LIVE GITHUB API SYNC & PROFILE RENDERING
+         * ============================================================================ */
+        function applyProfileData(profile) {
+            document.getElementById('navUsername').textContent = profile.username;
+            document.getElementById('profileName').textContent = profile.name;
+            document.getElementById('profileHandle').textContent = profile.handle;
+            document.getElementById('profileBio').textContent = profile.bio;
+            document.getElementById('profileLocation').textContent = profile.location;
+            document.getElementById('profileCompany').textContent = profile.company;
+            document.getElementById('profileAvatar').src = profile.avatar;
+            document.getElementById('profileStatus').textContent = profile.status;
+            document.getElementById('statRepos').textContent = profile.reposCount;
+            document.getElementById('statStars').textContent = profile.starsCount;
+            document.getElementById('statFollowers').textContent = profile.followersCount;
+            document.getElementById('statCommits').textContent = profile.commitsCount;
+            document.getElementById('profileGithubLink').href = profile.githubUrl;
+            document.getElementById('terminalTitle').textContent = `${profile.username}@github-os: ~/README.md (zsh)`;
+        }
+
+        function loadPresetProfile(type) {
+            if (type === 'default') {
+                applyProfileData(defaultProfile);
+                activeRepositories = [...defaultRepositories];
+                renderRepositories();
+                playTone(620, 0.08);
+                showToast('✨ 已恢复默认创意开发者档案 (Linus Nova)', 'success');
+            }
+        }
+
+        async function fetchRealGitHubUser(username) {
+            const cleanUser = (username || '').trim().replace(/^@/, '');
+            if (!cleanUser) {
+                showToast('请输入有效的 GitHub 用户名', 'warn');
+                return;
+            }
+            const syncBtn = document.getElementById('syncBtn');
+            syncBtn.textContent = '同步中...';
+            showToast(`⏳ 正在从 GitHub API 同步 @${cleanUser} 的公开数据...`, 'info');
+
+            try {
+                const [userRes, reposRes] = await Promise.all([
+                    fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}`),
+                    fetch(`https://api.github.com/users/${encodeURIComponent(cleanUser)}/repos?sort=updated&per_page=12`)
+                ]);
+
+                if (!userRes.ok) {
+                    throw new Error('未找到该用户或 API 速率受限');
+                }
+
+                const userData = await userRes.json();
+                const reposData = reposRes.ok ? await reposRes.json() : [];
+
+                const totalStars = Array.isArray(reposData)
+                    ? reposData.reduce((acc, r) => acc + (r.stargazers_count || 0), 0)
+                    : 0;
+
+                const mappedProfile = {
+                    username: userData.login,
+                    name: userData.name || userData.login,
+                    handle: `@${userData.login} · GitHub Developer`,
+                    bio: userData.bio || '该极客很酷，暂未填写个人简介，但代码说明了一切。',
+                    location: userData.location || 'Earth / Cloud',
+                    company: userData.company || 'Independent Open Source',
+                    avatar: userData.avatar_url,
+                    status: 'Live Synced',
+                    reposCount: userData.public_repos || 0,
+                    starsCount: totalStars >= 1000 ? (totalStars / 1000).toFixed(1) + 'k' : String(totalStars),
+                    followersCount: userData.followers >= 1000 ? (userData.followers / 1000).toFixed(1) + 'k' : String(userData.followers || 0),
+                    commitsCount: String(Math.max(380, (userData.public_repos || 10) * 42)),
+                    githubUrl: userData.html_url || `https://github.com/${userData.login}`
+                };
+
+                applyProfileData(mappedProfile);
+
+                if (Array.isArray(reposData) && reposData.length > 0) {
+                    const langColors = {
+                        TypeScript: '#3178c6',
+                        JavaScript: '#f1e05a',
+                        Rust: '#dea584',
+                        Python: '#3572A5',
+                        Go: '#00ADD8',
+                        Vue: '#41b883',
+                        HTML: '#e34c26',
+                        C: '#555555',
+                        'C++': '#f34b7d'
+                    };
+                    activeRepositories = reposData.slice(0, 6).map(r => ({
+                        name: r.name,
+                        description: r.description || '来自 GitHub 实时同步的开源仓库项目。',
+                        language: r.language || 'TypeScript',
+                        langColor: langColors[r.language] || '#58a6ff',
+                        stars: r.stargazers_count || 0,
+                        forks: r.forks_count || 0,
+                        topics: (r.topics && r.topics.length ? r.topics.slice(0, 4) : [r.language || 'open-source', 'github']),
+                        url: r.html_url,
+                        readme: `# ${r.name}\n- 🔗 仓库地址: ${r.html_url}\n- ⭐ Stars: ${r.stargazers_count} | Forks: ${r.forks_count}\n- 📅 最近更新: ${new Date(r.updated_at).toLocaleDateString()}`
+                    }));
+                    currentLangFilter = 'ALL';
+                    renderRepositories();
+                }
+
+                randomizeContributions();
+                playTone(840, 0.12, 'triangle');
+                showToast(`✅ 成功同步 @${userData.login} 的 GitHub 实时数据！`, 'success');
+            } catch (err) {
+                showToast(`⚠️ 无法连接或未找到用户: ${err.message}`, 'warn');
+            } finally {
+                syncBtn.textContent = '同步';
+            }
+        }
+
+        document.getElementById('githubSyncForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const val = document.getElementById('githubUsernameInput').value;
+            fetchRealGitHubUser(val);
+        });
+
+        /* ============================================================================
+         * 5. REPOSITORY EXPLORER & ARCHITECTURE PREVIEW MODAL
+         * ============================================================================ */
+        function filterRepos(lang) {
+            currentLangFilter = lang;
+            playTone(500, 0.05);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.className = 'lang-btn px-3 py-1 rounded-lg text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition';
+                } else {
+                    btn.className = 'lang-btn px-3 py-1 rounded-lg text-xs font-mono text-gh-muted hover:text-white transition';
+                }
+            });
+            renderRepositories();
+        }
+
+        function renderRepositories() {
+            const searchVal = (document.getElementById('repoSearchInput').value || '').toLowerCase();
+            const grid = document.getElementById('reposGrid');
+            const filtered = activeRepositories.filter(repo => {
+                const matchLang = currentLangFilter === 'ALL' || repo.language.toLowerCase() === currentLangFilter.toLowerCase();
+                const matchSearch = repo.name.toLowerCase().includes(searchVal) ||
+                    repo.description.toLowerCase().includes(searchVal) ||
+                    repo.topics.some(t => t.toLowerCase().includes(searchVal));
+                return matchLang && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bento-card rounded-2xl p-8 text-center font-mono text-sm text-gh-muted">
+                        未找到匹配的开源仓库，请尝试切换筛选条件。
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((repo, idx) => `
+                <article class="bento-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer" onclick="openRepoModal(${idx})">
+                    <div>
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="flex items-center gap-2 font-mono text-sm font-bold text-blue-400 group-hover:text-emerald-400 transition">
+                                <i class="fa-regular fa-bookmark text-xs"></i>
+                                <span class="truncate">${repo.name}</span>
+                            </div>
+                            <span class="px-2 py-0.5 text-[10px] font-mono rounded-full border border-gh-border text-gh-muted">Public</span>
+                        </div>
+                        <p class="mt-2.5 text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                            ${repo.description}
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-1.5">
+                            ${repo.topics.map(t => `<span class="px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-300 border border-blue-500/20 text-[10px] font-mono">#${t}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-3 border-t border-gh-border/50 flex items-center justify-between text-xs font-mono text-gh-muted">
+                        <div class="flex items-center gap-4">
+                            <span class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full" style="background:${repo.langColor}"></span>
+                                <span class="text-slate-300">${repo.language}</span>
+                            </span>
+                            <span class="flex items-center gap-1 hover:text-amber-400 transition">
+                                <i class="fa-regular fa-star text-amber-400"></i>
+                                <span>${repo.stars.toLocaleString()}</span>
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i class="fa-solid fa-code-fork"></i>
+                                <span>${repo.forks}</span>
+                            </span>
+                        </div>
+                        <span class="text-[11px] text-emerald-400 opacity-80 group-hover:opacity-100 flex items-center gap-1">
+                            <span>预览</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
+                    </div>
+                </article>
+            `).join('');
+
+            attachSpotlightListeners();
+        }
+
+        function openRepoModal(index) {
+            const searchVal = (document.getElementById('repoSearchInput').value || '').toLowerCase();
+            const filtered = activeRepositories.filter(repo => {
+                const matchLang = currentLangFilter === 'ALL' || repo.language.toLowerCase() === currentLangFilter.toLowerCase();
+                const matchSearch = repo.name.toLowerCase().includes(searchVal) ||
+                    repo.description.toLowerCase().includes(searchVal) ||
+                    repo.topics.some(t => t.toLowerCase().includes(searchVal));
+                return matchLang && matchSearch;
+            });
+            const repo = filtered[index];
+            if (!repo) return;
+
+            playTone(640, 0.06);
+            const currentUsername = document.getElementById('navUsername').textContent || 'linus-nova';
+            document.getElementById('modalRepoName').textContent = `${currentUsername}/${repo.name}`;
+            document.getElementById('modalRepoLang').textContent = repo.language;
+            document.getElementById('modalRepoDesc').textContent = repo.description;
+            document.getElementById('modalCloneCmd').textContent = `git clone https://github.com/${currentUsername}/${repo.name}.git`;
+            document.getElementById('modalRepoStars').textContent = repo.stars.toLocaleString();
+            document.getElementById('modalRepoForks').textContent = repo.forks.toLocaleString();
+            document.getElementById('modalRepoLink').href = repo.url;
+            document.getElementById('modalReadmeBody').innerHTML = repo.readme
+                .split('\n')
+                .map(line => line.startsWith('#')
+                    ? `<div class="text-white font-bold text-sm mb-1">${line}</div>`
+                    : `<div>${line}</div>`)
+                .join('');
+
+            const modal = document.getElementById('repoModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeRepoModal() {
+            const modal = document.getElementById('repoModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function copyModalClone() {
+            const cmd = document.getElementById('modalCloneCmd').textContent;
+            copyText(cmd, '📦 git clone 命令已复制到剪贴板！');
+        }
+
+        /* ============================================================================
+         * 6. INTERACTIVE ZSH TERMINAL EMULATOR
+         * ============================================================================ */
+        const terminalOutput = document.getElementById('terminalOutput');
+
+        function appendTerminalBlock(cmdText, htmlResponse) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'space-y-1.5';
+            if (cmdText) {
+                wrapper.innerHTML = `
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="text-emerald-400 font-bold">➜</span>
+                        <span class="text-blue-400 font-bold">~</span>
+                        <span class="text-white">${cmdText}</span>
+                    </div>
+                    <div class="pl-4 text-slate-300 leading-relaxed">${htmlResponse}</div>
+                `;
+            } else {
+                wrapper.innerHTML = `<div class="text-slate-300 leading-relaxed">${htmlResponse}</div>`;
+            }
+            terminalOutput.appendChild(wrapper);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function initTerminalWelcome() {
+            terminalOutput.innerHTML = '';
+            appendTerminalBlock('', `
+                <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs space-y-1">
+                    <div class="text-emerald-300 font-bold">👋 欢迎访问 Nova.dev 交互式 GitHub 终端 (v4.2.0-release)</div>
+                    <div class="text-gh-muted">点击右上角快捷标签或在下方输入命令探索。输入 <code class="text-white">help</code> 查看所有可用指令。</div>
+                </div>
+            `);
+            runTerminalCommand('whoami', true);
+        }
+
+        function runTerminalCommand(rawInput, silent = false) {
+            const cmd = (rawInput || '').trim();
+            if (!cmd) return;
+            if (!silent) playTone(560, 0.04, 'sine');
+
+            const lower = cmd.toLowerCase();
+
+            if (lower === 'clear') {
+                terminalOutput.innerHTML = '';
+                return;
+            }
+
+            if (lower === 'help') {
+                appendTerminalBlock(cmd, `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
+                        <div><code class="text-emerald-400">whoami</code> - 查看极客宣言与实时状态</div>
+                        <div><code class="text-emerald-400">ls repos</code> - 列出核心开源项目</div>
+                        <div><code class="text-emerald-400">git log</code> - 查看 ASCII 分支提交历史</div>
+                        <div><code class="text-emerald-400">skills</code> - 导出 JSON 格式技术栈能力</div>
+                        <div><code class="text-emerald-400">snake</code> - 在贡献绿墙上启动贪吃蛇游戏</div>
+                        <div><code class="text-emerald-400">theme [matrix|cyber|sunset]</code> - 切换主题</div>
+                        <div><code class="text-emerald-400">sync &lt;github_id&gt;</code> - 实时同步任意 GitHub 用户</div>
+                        <div><code class="text-emerald-400">clear</code> - 清空终端屏幕</div>
+                    </div>
+                `);
+            } else if (lower === 'whoami') {
+                const name = document.getElementById('profileName').textContent;
+                const bio = document.getElementById('profileBio').textContent;
+                appendTerminalBlock(cmd, `
+                    <div class="space-y-1 text-xs">
+                        <div><span class="text-purple-400">Developer:</span> <strong class="text-white">${name}</strong></div>
+                        <div><span class="text-blue-400">Manifesto:</span> ${bio}</div>
+                        <div><span class="text-emerald-400">Current Focus:</span> WebGPU Shaders, Rust CLI Tooling & Autonomous Coding Agents</div>
+                    </div>
+                `);
+            } else if (lower === 'ls repos' || lower === 'ls') {
+                const listHtml = activeRepositories.map(r =>
+                    `<div class="flex items-center justify-between py-0.5 border-b border-white/5">
+                        <span class="text-blue-400 font-semibold">📁 ${r.name}/</span>
+                        <span class="text-xs text-amber-400">★ ${r.stars} (${r.language})</span>
+                    </div>`
+                ).join('');
+                appendTerminalBlock(cmd, `<div class="space-y-1 text-xs">${listHtml}</div>`);
+            } else if (lower === 'git log') {
+                appendTerminalBlock(cmd, `
+                    <pre class="text-[11px] leading-tight text-slate-300 overflow-x-auto">* <span class="text-amber-400">8f92a1c</span> <span class="text-emerald-400">(HEAD -> main, origin/main)</span> feat(webgpu): 百万粒子流体着色器管线
+* <span class="text-amber-400">3d41e09</span> perf(wasm): 使用 SIMD 指令集优化 FFT 音频频谱计算
+| * <span class="text-amber-400">9a11b2f</span> <span class="text-purple-400">(feat/ai-agent)</span> feat: 引入多模型 Code Review AST 解析器
+|/
+* <span class="text-amber-400">7c02d4e</span> docs(readme): 更新交互式 Bento 个人主页架构文档</pre>
+                `);
+            } else if (lower === 'skills' || lower === 'cat skills.json') {
+                appendTerminalBlock(cmd, `
+                    <pre class="text-[11px] text-emerald-300 bg-black/40 p-2.5 rounded-xl border border-gh-border overflow-x-auto">{
+  "languages": ["TypeScript", "Rust", "Python", "GLSL/WGSL", "Go"],
+  "frontend": ["React", "Vue 3", "Three.js", "WebGPU", "TailwindCSS"],
+  "systems": ["WebAssembly", "Tokio", "Docker", "Linux Kernel Tuning"],
+  "coffeePerDay": "3 cups ☕"
+}</pre>
+                `);
+            } else if (lower === 'snake') {
+                appendTerminalBlock(cmd, `<span class="text-emerald-400">🐍 正在为您滚动至 365 天贡献绿墙并启动 GitHub 贪吃蛇竞技模式...</span>`);
+                document.getElementById('contributions').scrollIntoView({ behavior: 'smooth' });
+                if (!snakeRunning) toggleContributionSnake();
+            } else if (lower.startsWith('theme')) {
+                const parts = lower.split(' ');
+                cycleTheme(parts[1]);
+                appendTerminalBlock(cmd, `<span class="text-blue-400">✨ 视觉主题已更新！</span>`);
+            } else if (lower.startsWith('sync ')) {
+                const targetUser = cmd.slice(5).trim();
+                appendTerminalBlock(cmd, `<span class="text-amber-300">⏳ 正在拉取 GitHub 用户 @${targetUser} 的公开档案...</span>`);
+                fetchRealGitHubUser(targetUser);
+            } else {
+                appendTerminalBlock(cmd, `<span class="text-rose-400">zsh: command not found: ${cmd}</span> · 输入 <code class="text-emerald-400">help</code> 查看支持的命令。`);
+            }
+        }
+
+        document.getElementById('terminalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = document.getElementById('terminalInput');
+            runTerminalCommand(input.value);
+            input.value = '';
+        });
+
+        /* ============================================================================
+         * 7. 365-DAY CONTRIBUTION HEATMAP + PIXEL PAINTER + SNAKE MINI-GAME
+         * ============================================================================ */
+        const WEEKS = 52;
+        const DAYS = 7;
+        let contribLevels = []; // 52 x 7 matrix of 0..4
+        const levelColors = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'];
+
+        // Snake state
+        let snakeRunning = false;
+        let snakeTimer = null;
+        let snakeAutopilot = true;
+        let snakeBody = [];
+        let snakeDir = { x: 1, y: 0 };
+        let snakeFood = { x: 20, y: 3 };
+        let snakeScore = 0;
+
+        function initContributionGrid() {
+            contribLevels = Array.from({ length: WEEKS }, () =>
+                Array.from({ length: DAYS }, () => {
+                    const r = Math.random();
+                    if (r < 0.22) return 0;
+                    if (r < 0.50) return 1;
+                    if (r < 0.75) return 2;
+                    if (r < 0.92) return 3;
+                    return 4;
+                })
+            );
+            renderContributionGrid();
+        }
+
+        function renderContributionGrid() {
+            const grid = document.getElementById('heatmapGrid');
+            grid.innerHTML = '';
+
+            for (let w = 0; w < WEEKS; w++) {
+                for (let d = 0; d < DAYS; d++) {
+                    const level = contribLevels[w][d];
+                    const cell = document.createElement('div');
+                    cell.id = `cell-${w}-${d}`;
+                    cell.className = 'contrib-cell cursor-pointer';
+                    cell.style.backgroundColor = levelColors[level];
+
+                    // Hover readout
+                    cell.addEventListener('mouseenter', () => {
+                        const commits = level === 0 ? 0 : level * 3 + ((w + d) % 4);
+                        const dateObj = new Date(2026, 0, 1 + w * 7 + d);
+                        const dateStr = dateObj.toISOString().split('T')[0];
+                        document.getElementById('contribHoverReadout').innerHTML = `
+                            <span class="w-2.5 h-2.5 rounded-sm inline-block" style="background:${levelColors[level]}"></span>
+                            <span><strong>${dateStr}</strong> · 当日完成了 <strong class="text-emerald-400">${commits}</strong> 次代码提交 (点击方格可切换颜色)</span>
+                        `;
+                    });
+
+                    // Click to paint pixel
+                    cell.addEventListener('click', () => {
+                        contribLevels[w][d] = (contribLevels[w][d] + 1) % 5;
+                        cell.style.backgroundColor = levelColors[contribLevels[w][d]];
+                        playTone(440 + contribLevels[w][d] * 80, 0.04);
+                    });
+
+                    grid.appendChild(cell);
+                }
+            }
+        }
+
+        function randomizeContributions() {
+            playTone(540, 0.06);
+            initContributionGrid();
+        }
+
+        // 5x5 Bitmap font for Pixel Art on Contribution Grid
+        const MINI_FONT = {
+            H: ['10001','10001','11111','10001','10001'],
+            E: ['11111','10000','11110','10000','11111'],
+            L: ['10000','10000','10000','10000','11111'],
+            O: ['01110','10001','10001','10001','01110'],
+            W: ['10001','10001','10101','11011','10001'],
+            R: ['11110','10001','11110','10010','10001'],
+            D: ['11110','10001','10001','10001','11110'],
+            ' ': ['000','000','000','000','000']
+        };
+
+        function drawPixelTextOnGrid(text) {
+            playTone(760, 0.08, 'triangle');
+            for (let w = 0; w < WEEKS; w++) {
+                for (let d = 0; d < DAYS; d++) {
+                    contribLevels[w][d] = Math.random() < 0.35 ? 1 : 0;
+                }
+            }
+
+            let cursorX = 2;
+            for (const ch of text.toUpperCase()) {
+                const glyph = MINI_FONT[ch] || MINI_FONT[' '];
+                const width = glyph[0].length;
+                if (cursorX + width >= WEEKS) break;
+
+                for (let r = 0; r < glyph.length; r++) {
+                    for (let c = 0; c < width; c++) {
+                        if (glyph[r][c] === '1') {
+                            contribLevels[cursorX + c][r + 1] = 4;
+                        }
+                    }
+                }
+                cursorX += width + 1;
+            }
+            renderContributionGrid();
+            showToast('🎨 已在 365 天贡献墙上绘制「HELLO WORLD」像素字！', 'success');
+        }
+
+        // Playable / AI Contribution Snake
+        function toggleContributionSnake() {
+            const btnText = document.getElementById('snakeBtnText');
+            const controlsBar = document.getElementById('snakeControlsBar');
+            const scoreBadge = document.getElementById('snakeScoreBadge');
+
+            if (snakeRunning) {
+                snakeRunning = false;
+                clearInterval(snakeTimer);
+                btnText.textContent = '启动贪吃蛇模式 (AI/手动)';
+                controlsBar.classList.add('hidden');
+                scoreBadge.classList.add('hidden');
+                renderContributionGrid();
+                showToast('🛑 贪吃蛇模式已结束', 'info');
+                return;
+            }
+
+            snakeRunning = true;
+            snakeAutopilot = true;
+            snakeScore = 0;
+            document.getElementById('snakeScore').textContent = '0';
+            document.getElementById('snakeModeLabel').textContent = '🤖 AI 自动寻路吞噬中';
+            btnText.textContent = '停止贪吃蛇模式';
+            controlsBar.classList.remove('hidden');
+            scoreBadge.classList.remove('hidden');
+
+            snakeBody = [
+                { x: 6, y: 3 },
+                { x: 5, y: 3 },
+                { x: 4, y: 3 },
+                { x: 3, y: 3 }
+            ];
+            snakeDir = { x: 1, y: 0 };
+            spawnSnakeFood();
+            playTone(680, 0.1, 'triangle');
+            showToast('🐍 GitHub 贡献墙贪吃蛇已启动！支持 AI 托管或 WASD 手动控制', 'success');
+
+            snakeTimer = setInterval(stepContributionSnake, 110);
+        }
+
+        function spawnSnakeFood() {
+            // Prefer cells with high contributions or random spot
+            for (let tries = 0; tries < 50; tries++) {
+                const fx = Math.floor(Math.random() * WEEKS);
+                const fy = Math.floor(Math.random() * DAYS);
+                if (!snakeBody.some(s => s.x === fx && s.y === fy)) {
+                    snakeFood = { x: fx, y: fy };
+                    return;
+                }
+            }
+        }
+
+        function setSnakeManualDir(dx, dy) {
+            if (!snakeRunning) return;
+            snakeAutopilot = false;
+            document.getElementById('snakeModeLabel').textContent = '🎮 玩家手动操控中';
+            if (snakeDir.x + dx !== 0 || snakeDir.y + dy !== 0) {
+                snakeDir = { x: dx, y: dy };
+            }
+        }
+
+        function switchSnakeAutopilot() {
+            snakeAutopilot = !snakeAutopilot;
+            document.getElementById('snakeModeLabel').textContent = snakeAutopilot
+                ? '🤖 AI 自动寻路吞噬中'
+                : '🎮 玩家手动操控中';
+        }
+
+        function stepContributionSnake() {
+            if (!snakeRunning) return;
+            const head = snakeBody[0];
+
+            if (snakeAutopilot) {
+                if (head.x < snakeFood.x) snakeDir = { x: 1, y: 0 };
+                else if (head.x > snakeFood.x) snakeDir = { x: -1, y: 0 };
+                else if (head.y < snakeFood.y) snakeDir = { x: 0, y: 1 };
+                else if (head.y > snakeFood.y) snakeDir = { x: 0, y: -1 };
+            }
+
+            const nextX = (head.x + snakeDir.x + WEEKS) % WEEKS;
+            const nextY = (head.y + snakeDir.y + DAYS) % DAYS;
+
+            snakeBody.unshift({ x: nextX, y: nextY });
+
+            // Check if ate food or green square
+            if (nextX === snakeFood.x && nextY === snakeFood.y) {
+                snakeScore += 10;
+                document.getElementById('snakeScore').textContent = String(snakeScore);
+                contribLevels[nextX][nextY] = 0;
+                playTone(880, 0.06, 'sine');
+                spawnSnakeFood();
+            } else {
+                if (contribLevels[nextX][nextY] > 0) {
+                    snakeScore += contribLevels[nextX][nextY];
+                    document.getElementById('snakeScore').textContent = String(snakeScore);
+                    contribLevels[nextX][nextY] = 0;
+                }
+                snakeBody.pop();
+                if (snakeBody.length > 14) snakeBody.pop();
+            }
+
+            // Paint grid classes
+            for (let w = 0; w < WEEKS; w++) {
+                for (let d = 0; d < DAYS; d++) {
+                    const el = document.getElementById(`cell-${w}-${d}`);
+                    if (!el) continue;
+                    el.className = 'contrib-cell cursor-pointer';
+                    el.style.backgroundColor = levelColors[contribLevels[w][d]];
+                }
+            }
+
+            const foodEl = document.getElementById(`cell-${snakeFood.x}-${snakeFood.y}`);
+            if (foodEl) foodEl.classList.add('snake-food');
+
+            snakeBody.forEach((seg, idx) => {
+                const segEl = document.getElementById(`cell-${seg.x}-${seg.y}`);
+                if (!segEl) return;
+                if (idx === 0) segEl.classList.add('snake-head');
+                else segEl.classList.add('snake-body');
+            });
+        }
+
+        /* ============================================================================
+         * 8. COMMAND PALETTE (Cmd/Ctrl + K) & STAR CELEBRATION
+         * ============================================================================ */
+        const paletteCommands = [
+            { title: '🐍 启动 / 停止贡献墙贪吃蛇游戏', hint: 'Game', action: () => { document.getElementById('contributions').scrollIntoView({ behavior: 'smooth' }); toggleContributionSnake(); } },
+            { title: '🎨 绘制 HELLO WORLD 贡献墙像素图案', hint: 'Pixel Art', action: () => { document.getElementById('contributions').scrollIntoView({ behavior: 'smooth' }); drawPixelTextOnGrid('HELLO WORLD'); } },
+            { title: '🌈 切换视觉主题 (Matrix / Cyber / Sunset)', hint: 'Theme', action: () => cycleTheme() },
+            { title: '⚡ 同步尤雨溪 (@yyx990803) 真实 GitHub 数据', hint: 'Live API', action: () => fetchRealGitHubUser('yyx990803') },
+            { title: '⚡ 同步 Anthony Fu (@antfu) 真实 GitHub 数据', hint: 'Live API', action: () => fetchRealGitHubUser('antfu') },
+            { title: '✨ 恢复默认创意开发者档案 (Linus Nova)', hint: 'Preset', action: () => loadPresetProfile('default') },
+            { title: '🔑 复制开发者 SSH 公钥', hint: 'Clipboard', action: () => copyText('ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINovaDevCreativeGitHubKey linus@nova.dev', 'SSH 公钥已复制') },
+            { title: '⭐ 给个人主页点亮一颗 Star', hint: 'Star', action: () => triggerStarConfetti() }
+        ];
+
+        function openCommandPalette() {
+            playTone(600, 0.05);
+            const modal = document.getElementById('commandPaletteModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            const input = document.getElementById('cmdPaletteInput');
+            input.value = '';
+            renderCommandPaletteItems();
+            setTimeout(() => input.focus(), 50);
+        }
+
+        function closeCommandPalette() {
+            const modal = document.getElementById('commandPaletteModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function renderCommandPaletteItems() {
+            const q = (document.getElementById('cmdPaletteInput').value || '').toLowerCase();
+            const list = document.getElementById('cmdPaletteList');
+            const matched = paletteCommands.filter(c => c.title.toLowerCase().includes(q) || c.hint.toLowerCase().includes(q));
+
+            list.innerHTML = matched.map((cmd, i) => `
+                <button onclick="executePaletteCmd(${i})" class="w-full px-3 py-2.5 rounded-xl hover:bg-white/10 flex items-center justify-between text-left transition">
+                    <span class="text-slate-200">${cmd.title}</span>
+                    <span class="px-2 py-0.5 rounded bg-black/40 border border-gh-border text-[10px] text-gh-muted">${cmd.hint}</span>
+                </button>
+            `).join('');
+        }
+
+        function executePaletteCmd(idx) {
+            const q = (document.getElementById('cmdPaletteInput').value || '').toLowerCase();
+            const matched = paletteCommands.filter(c => c.title.toLowerCase().includes(q) || c.hint.toLowerCase().includes(q));
+            if (matched[idx]) {
+                closeCommandPalette();
+                matched[idx].action();
+            }
+        }
+
+        function triggerStarConfetti() {
+            pageStars++;
+            document.getElementById('pageStarCounter').textContent = pageStars.toLocaleString();
+            playTone(880, 0.08, 'triangle');
+            setTimeout(() => playTone(1174, 0.12, 'triangle'), 90);
+            showToast(`🌟 感谢点亮 Star！当前主页累计获得 ${pageStars.toLocaleString()} Stars`, 'success');
+        }
+
+        /* ============================================================================
+         * 9. SPOTLIGHT HOVER CARDS, KEYBOARD SHORTCUTS & CONSTELLATION CANVAS
+         * ============================================================================ */
+        function attachSpotlightListeners() {
+            document.querySelectorAll('.bento-card').forEach(card => {
+                card.onmousemove = (e) => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                };
+            });
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                const modal = document.getElementById('commandPaletteModal');
+                if (modal.classList.contains('hidden')) openCommandPalette();
+                else closeCommandPalette();
+            } else if (e.key === 'Escape') {
+                closeCommandPalette();
+                closeRepoModal();
+            }
+
+            // Snake keyboard control when active and not typing in an input
+            if (snakeRunning && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+                if (e.key === 'w' || e.key === 'ArrowUp') { e.preventDefault(); setSnakeManualDir(0, -1); }
+                if (e.key === 's' || e.key === 'ArrowDown') { e.preventDefault(); setSnakeManualDir(0, 1); }
+                if (e.key === 'a' || e.key === 'ArrowLeft') { e.preventDefault(); setSnakeManualDir(-1, 0); }
+                if (e.key === 'd' || e.key === 'ArrowRight') { e.preventDefault(); setSnakeManualDir(1, 0); }
+            }
+        });
+
+        // Interactive Constellation Background Canvas
+        function initBackgroundCanvas() {
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            const nodes = Array.from({ length: 42 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.45,
+                vy: (Math.random() - 0.5) * 0.45,
+                r: Math.random() * 1.8 + 1
+            }));
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < nodes.length; i++) {
+                    const n1 = nodes[i];
+                    n1.x += n1.vx;
+                    n1.y += n1.vy;
+                    if (n1.x < 0 || n1.x > width) n1.vx *= -1;
+                    if (n1.y < 0 || n1.y > height) n1.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(n1.x, n1.y, n1.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(88, 166, 255, 0.45)';
+                    ctx.fill();
+
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const n2 = nodes[j];
+                        const dx = n1.x - n2.x;
+                        const dy = n1.y - n2.y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < 135) {
+                            ctx.beginPath();
+                            ctx.moveTo(n1.x, n1.y);
+                            ctx.lineTo(n2.x, n2.y);
+                            ctx.strokeStyle = `rgba(57, 211, 83, ${(1 - dist / 135) * 0.16})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // Live UTC+8 Clock
+        function startClock() {
+            const update = () => {
+                const now = new Date();
+                const timeStr = now.toTimeString().split(' ')[0];
+                const el = document.getElementById('localTimeDisplay');
+                if (el) el.textContent = `Local · ${timeStr}`;
+            };
+            update();
+            setInterval(update, 1000);
+        }
+
+        window.onload = function() {
+            initTerminalWelcome();
+            initContributionGrid();
+            renderRepositories();
+            attachSpotlightListeners();
+            initBackgroundCanvas();
+            startClock();
+        };
+    </script>
 </body>
 </html>
