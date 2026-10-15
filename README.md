@@ -1,74 +1,169 @@
 <div align="center">
 
-<!-- 顶部动态波浪 Banner -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hi%20there,%20I'm%20bbylw%20👋&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Passionate%20Developer%20%7C%20Tech%20Explorer%20%7C%20Lifelong%20Learner&descAlignY=55&descSize=18" />
+<!-- 顶部高对比度深邃暗夜渐变动态横幅 -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e1b4b,100:3b0764&height=220&section=header&text=Hi%20there,%20I'm%20bbylw%20%F0%9F%91%8B&fontSize=46&fontColor=ffffff&fontAlignY=38&desc=Passionate%20Developer%20%20%7C%20%20Tech%20Explorer%20%20%7C%20%20Lifelong%20Learner&descSize=18&descColor=cbd5e1&descAlignY=62&animation=fadeIn" alt="Header Banner" />
 
-<!-- 动态打字机效果副标题 -->
-<a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=61DAFB&center=true&vCenter=true&width=700&lines=Building+Cross-Platform+Experiences+with+React+Native+%F0%9F%93%B1;Exploring+TypeScript%2C+Kotlin+%26+Modern+Databases+%F0%9F%9A%80;Every+Day+is+a+New+Opportunity+to+Learn+%26+Grow+%F0%9F%8C%B1;代码的乐趣在于探索未知、解决问题与创造价值+%E2%9C%A8" alt="Typing SVG" />
+<!-- 动态打字机副标题（已修复根路径与字符转义，确保在 GitHub 100% 正常显示） -->
+<a href="https://github.com/bbylw">
+  <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=19&duration=3000&pause=1000&color=6366F1&center=true&vCenter=true&width=760&lines=Building+Cross-Platform+Apps+with+React+Native+%26+TypeScript;Exploring+Kotlin%2C+Modern+Frontend+%26+Database+Architecture;Passionate+about+Clean+Code+%26+Engineering+Foundations;Every+Day+is+a+New+Opportunity+to+Learn+and+Grow" alt="Typing SVG" />
 </a>
-
-</div>
-
----
-
-## 🧑‍💻 About Me / 关于我
-
-```typescript
-const bbylw = {
-  role: "Emerging Mobile & Full-Stack Developer / 开发者与技术探索者",
-  focus: ["React Native", "TypeScript", "Kotlin", "Database Architecture"],
-  currentlyLearning: ["Advanced TypeScript", "Cross-Platform Mobile Dev", "NoSQL & SQL Databases"],
-  philosophy: "Stay curious, build things, and improve 1% every day. 🚀"
-};
-```
-
-> 🌍 **English:**  
-> Hi there! I'm **bbylw**, an enthusiastic developer passionate about building clean, user-centric applications. I love diving deep into programming foundations, tackling algorithmic and engineering challenges, and exploring how modern frontend frameworks and backend databases work seamlessly together. Every day is a new opportunity to write better code!
->
-> 🇨🇳 **中文:**  
-> 大家好！我是 **bbylw**，一名充满热情的开发者与技术探索者。我热衷于钻研扎实的代码基础、优雅地解决工程问题，并探索不同技术栈之间如何高效协同。保持好奇、持续构建，每一天都是精进技艺的新起点！
-
-- 💡 **Interests / 探索领域:** Programming Foundations, Mobile App Architecture & Modern Dev Tools / 编程底层逻辑、移动端应用架构与现代开发工具链
-- 🌱 **Currently Learning / 正在深耕:** TypeScript, React Native (Expo), and Database Design / TypeScript 进阶、React Native 跨平台开发与数据库架构设计
-
----
-
-## 🛠️ Tech Stack & Tools / 技术栈与工具
-
-<div align="center">
-
-| Category / 类别 | Technologies / 技术与工具 |
-| :---: | :---: |
-| **Languages**<br>编程语言 | ![Kotlin](https://img.shields.io/badge/Kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Shell Script](https://img.shields.io/badge/Shell_Script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white) ![YAML](https://img.shields.io/badge/YAML-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515) |
-| **Mobile & Frontend**<br>移动端与前端 | ![React Native](https://img.shields.io/badge/React_Native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Expo](https://img.shields.io/badge/Expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37) ![Redux](https://img.shields.io/badge/Redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) |
-| **Backend & Database**<br>后端服务与数据库 | ![Firebase](https://img.shields.io/badge/Firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ![MySQL](https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Realm](https://img.shields.io/badge/Realm-39477F?style=for-the-badge&logo=realm&logoColor=white) |
-| **UI / UX & Design**<br>设计与原型 | ![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Invision](https://img.shields.io/badge/Invision-FF3366?style=for-the-badge&logo=invision&logoColor=white) |
-
-</div>
-
----
-
-## 📊 GitHub Analytics / 数据统计
-
-<div align="center">
-
-<!-- 核心数据与热门语言并排展示 -->
-<img height="175em" src="https://github-readme-stats.vercel.app/api?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true" alt="bbylw's GitHub Stats" />
-<img height="175em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&langs_count=8" alt="bbylw's Top Languages" />
 
 <br/>
 
-<!-- 连续提交记录 -->
-<img height="175em" src="https://github-readme-streak-stats.herokuapp.com/?user=bbylw&theme=tokyonight&hide_border=true" alt="bbylw's Streak" />
+<!-- 顶部个人状态标签 -->
+<img src="https://img.shields.io/badge/Focus-Mobile_%26_Full--Stack-6366f1?style=flat-square&logo=gitbook&logoColor=white" alt="Focus" />
+<img src="https://img.shields.io/badge/Exploring-TypeScript_%7C_React_Native-8b5cf6?style=flat-square&logo=typescript&logoColor=white" alt="Exploring" />
+<img src="https://img.shields.io/badge/Database-MySQL_%7C_MongoDB_%7C_Realm-0ea5e9?style=flat-square&logo=databricks&logoColor=white" alt="Database" />
+<img src="https://komarev.com/ghpvc/?username=bbylw&color=ec4899&style=flat-square&label=Profile+Views" alt="Profile Views" />
 
 </div>
 
-### 🏆 Top Contributed Repositories / 核心贡献仓库
+<br/>
+
+## 🧑‍💻 About Me / 关于我
+
+<!-- Bento 双栏并排布局：左侧双语简介 + 右侧 TypeScript 极客名片 -->
+<table width="100%">
+  <tr>
+    <td width="52%" valign="top">
+      <p>🌍 <b>English</b><br/>
+      Hi there! I'm <b>bbylw</b>, an enthusiastic developer passionate about exploring programming foundations, solving engineering challenges, and understanding how modern technologies work seamlessly together. Every day is a new opportunity to learn and improve my craft!</p>
+      <p>🇨🇳 <b>中文</b><br/>
+      大家好！我是 <b>bbylw</b>，一名充满热情的开发者与技术探索者。我热衷于钻研扎实的代码基础、探寻问题解决之道，并研究不同技术栈之间如何高效协同。每一天都是学习与精进技艺的好机会！</p>
+      <ul>
+        <li>💡 <b>Interests / 探索方向：</b><br/>Programming Foundations · Problem Solving · Exploring Modern Dev Tools</li>
+        <li>🌱 <b>Currently Learning / 正在深耕：</b><br/><code>TypeScript</code> · <code>React Native (Expo)</code> · <code>Database Concepts</code></li>
+      </ul>
+    </td>
+    <td width="48%" valign="top">
+<pre lang="typescript"><code>interface DeveloperProfile {
+  readonly username: string;
+  role: string;
+  coreStack: string[];
+  currentlyLearning: string[];
+  philosophy: string;
+}
+
+const bbylw: DeveloperProfile = {
+  username: "bbylw",
+  role: "Emerging Mobile & Full-Stack Dev",
+  coreStack: [
+    "TypeScript", "JavaScript",
+    "Kotlin", "React Native", "Expo"
+  ],
+  currentlyLearning: [
+    "Advanced TypeScript",
+    "Cross-Platform Architecture",
+    "SQL & NoSQL Databases"
+  ],
+  philosophy: "Stay curious, keep building. 🚀"
+};</code></pre>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+## 🛠️ Tech Stack & Arsenal / 技术栈矩阵
 
 <div align="center">
-  <img src="https://github-contributor-stats.vercel.app/api?username=bbylw&limit=5&theme=tokyonight&combine_all_yearly_contributions=true&hide_border=true" alt="Top Contributed Repo" />
+
+<!-- macOS 风格圆角图标阵列 -->
+<p>
+  <img src="https://skillicons.dev/icons?i=kotlin,ts,js,bash,react,redux,firebase,mysql,mongodb,figma&perline=10" alt="Tech Icons" />
+</p>
+
+<!-- 2x2 分类技术栈矩阵表格 -->
+<table width="100%">
+  <tr>
+    <td align="center" width="50%" valign="top">
+      <h4>💻 Languages &amp; Scripting / 编程语言</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin" />
+        <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+        <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript" />
+        <img src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Shell Script" />
+        <img src="https://img.shields.io/badge/YAML-CB171E?style=for-the-badge&logo=yaml&logoColor=white" alt="YAML" />
+      </p>
+    </td>
+    <td align="center" width="50%" valign="top">
+      <h4>📱 Mobile &amp; Frontend / 移动端与前端</h4>
+      <p>
+        <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
+        <img src="https://img.shields.io/badge/Expo-1C1E24?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
+        <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" alt="Redux" />
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%" valign="top">
+      <h4>🗄️ Backend &amp; Database / 数据库与后端服务</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" alt="Firebase" />
+        <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+        <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+        <img src="https://img.shields.io/badge/Realm-39477F?style=for-the-badge&logo=realm&logoColor=white" alt="Realm" />
+      </p>
+    </td>
+    <td align="center" width="50%" valign="top">
+      <h4>🎨 UI / UX Design / 界面与原型设计</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
+        <img src="https://img.shields.io/badge/InVision-FF3366?style=for-the-badge&logo=invision&logoColor=white" alt="InVision" />
+      </p>
+    </td>
+  </tr>
+</table>
+
 </div>
 
+<br/>
+
+## 🚀 Engineering Focus / 重点探索领域
+
+<table width="100%">
+  <tr>
+    <td width="33%" valign="top" align="center">
+      <h4>📱 Cross-Platform Mobile</h4>
+      <p>使用 <b>React Native</b>、<b>Expo</b> 与 <b>Kotlin</b> 构建流畅的跨平台移动应用，注重组件复用与丝滑的交互体验。</p>
+    </td>
+    <td width="33%" valign="top" align="center">
+      <h4>🧩 Type-Safe Architecture</h4>
+      <p>深入实践 <b>TypeScript</b> 与 <b>Redux</b> 状态管理，通过严谨的类型系统提升代码可维护性与工程质量。</p>
+    </td>
+    <td width="33%" valign="top" align="center">
+      <h4>🗄️ Data &amp; Cloud Sync</h4>
+      <p>探索 <b>MySQL</b>、<b>MongoDB</b>、<b>Realm</b> 与 <b>Firebase</b> 的数据建模与端云同步方案，打通全栈数据链路。</p>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+## 📊 GitHub Analytics / 开源数据看板
+
+<div align="center">
+
+<!-- 第一行：GitHub 核心指标 + 连续提交统计 -->
+<img height="175em" src="https://github-readme-stats.vercel.app/api?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&border_radius=10" alt="bbylw's GitHub Stats" />
+<img height="175em" src="https://streak-stats.demolab.com?user=bbylw&theme=tokyonight&hide_border=true&border_radius=10" alt="bbylw's Streak" />
+
+<br/><br/>
+
+<!-- 第二行：综合仓库贡献卡片 + 常用编程语言分布 -->
+<img height="165em" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=bbylw&theme=tokyonight" alt="Profile Summary" />
+<img height="165em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
+
+<br/><br/>
+
+<!-- 第三行：全宽实时开源贡献趋势折线图（替代原本已停服失效的 contributor-stats） -->
+<img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=bbylw&bg_color=1a1b27&color=70a5fd&line=bf91f3&point=38bdae&area=true&hide_border=true&border_radius=10&custom_title=Contribution%20Activity%20Graph%20%2F%20%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE%E6%B4%BB%E8%B7%83%E5%BA%A6%E8%B6%8B%E5%8A%BF" alt="Activity Graph" />
+
+</div>
+
+<br/>
+
 <!-- 底部动态波浪收尾 -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" />
+<div align="center">
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e1b4b,100:3b0764&height=110&section=footer" alt="Footer Banner" />
+</div>
