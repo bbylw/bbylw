@@ -145,19 +145,20 @@ const bbylw: DeveloperProfile = {
 <div align="center">
 
 <!-- 第一行：GitHub 核心指标 + 连续提交统计 -->
-<img height="175em" src="https://github-readme-stats.vercel.app/api?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&border_radius=10" alt="bbylw's GitHub Stats" />
-<img height="175em" src="https://streak-stats.demolab.com?user=bbylw&theme=tokyonight&hide_border=true&border_radius=10" alt="bbylw's Streak" />
+<img height="170em" src="https://github-readme-stats.vercel.app/api?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&border_radius=10" alt="bbylw's GitHub Stats" />
+<img height="170em" src="https://streak-stats.demolab.com?user=bbylw&theme=tokyonight&hide_border=true&border_radius=10" alt="bbylw's Streak" />
 
 <br/><br/>
 
-<!-- 第二行：综合仓库贡献卡片 + 常用编程语言分布 -->
-<img height="165em" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=bbylw&theme=tokyonight" alt="Profile Summary" />
+<!-- 第二行：常用语言占比 + 仓库语言分布 + 24小时代码活跃时段 -->
 <img height="165em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=bbylw&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
+<img height="165em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=bbylw&theme=tokyonight" alt="Repos Per Language" />
+<img height="165em" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=bbylw&theme=tokyonight&utcOffset=8" alt="Productive Time" />
 
 <br/><br/>
 
-<!-- 第三行：全宽实时开源贡献趋势折线图（替代原本已停服失效的 contributor-stats） -->
-<img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=bbylw&bg_color=1a1b27&color=70a5fd&line=bf91f3&point=38bdae&area=true&hide_border=true&border_radius=10&custom_title=Contribution%20Activity%20Graph%20%2F%20%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE%E6%B4%BB%E8%B7%83%E5%BA%A6%E8%B6%8B%E5%8A%BF" alt="Activity Graph" />
+<!-- 第三行：全宽全景开源贡献趋势卡片（采用已验证稳定的 profile-summary-cards 引擎） -->
+<img width="96%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=bbylw&theme=tokyonight" alt="Profile Contribution Summary" />
 
 </div>
 
