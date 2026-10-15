@@ -22,46 +22,61 @@
 
 ## 👋 About Me / 关于我
 
-<!-- Bento 双栏并排布局：左侧高质感双语简介 + 右侧 Vibe Coder 极客代码名片 -->
+<!-- 2x2 Bento 对称式网格布局：解决左右高度失衡、文字墙拥挤与代码块缩进丢失问题 -->
 <table width="100%">
   <tr>
-    <td width="54%" valign="top">
-      <p>🌍 <b>English</b><br/>
-      Hi there! I'm <b>bbylw</b> — a coding beginner proudly embracing the <b>AI-Native</b> era from day one. Rather than getting trapped in endless tutorial hell, I leap straight into creation through <b>Vibe Coding</b>. Treating AI as my 24/7 pair-programming architect and mentor, I build tangible projects first and reverse-engineer the underlying computer science fundamentals along the way. I'm deeply fascinated by how languages, frameworks, and databases orchestrate together—turning every bug squashed and every prompt refined into a stepping stone from zero to one.</p>
-      <p>🇨🇳 <b>中文</b><br/>
-      大家好！我是 <b>bbylw</b>，一名生于 AI 时代的编程小白，也是一名纯粹的 <b>Vibe Coding</b> 实战派。相比于按部就班地死磕枯燥语法，我更倾向于以“创造者”的视角直接切入实战——通过 <b>Vibe Coding</b> 将脑海中的灵感快速转化为可运行的项目，并在与 AI 的高频协作与追问中，反向拆解代码逻辑与工程基础。我对底层语法、问题排查以及多技术栈之间如何精密咬合充满好奇。虽从零起步，但我正借助 AI 的杠杆边做边学，在每一次构建与重构中完成从“跑通代码”到“理解原理”的进化。</p>
-      <ul>
-        <li>💡 <b>Core Vibe / 核心探索：</b><br/>Vibe Coding · Learning by Building · AI-Assisted Debugging · Tech Orchestration</li>
-        <li>🌱 <b>Currently Grinding / 正在深耕：</b><br/><code>TypeScript Foundations</code> · <code>React Native &amp; Expo</code> · <code>Database Concepts</code></li>
-      </ul>
+    <td width="52%" valign="top">
+      <p>
+        <img src="https://img.shields.io/badge/EN-English_Bio-6366f1?style=flat-square" alt="EN" /><br/>
+        Hi there! I'm <b>bbylw</b> — a coding beginner proudly embracing the <b>AI-Native</b> era from day one. Skipping endless tutorial hell, I leap straight into creation via <b>Vibe Coding</b>: treating AI as my 24/7 pair-programming architect to ship tangible projects first, then reverse-engineering the computer science fundamentals along the way. Every bug squashed and prompt refined is my stepping stone from <code>0</code> to <code>1</code>.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/ZH-中文自述-8b5cf6?style=flat-square" alt="ZH" /><br/>
+        大家好！我是 <b>bbylw</b>，一名生于 AI 时代的编程小白，也是纯粹的 <b>Vibe Coding</b> 实战派。相比于按部就班死磕枯燥语法，我更倾向于以“创造者”视角直接切入实战——借力 AI 将脑海中的灵感快速转化为可运行项目，并在高频协作与追问中，反向拆解底层语法、问题排查与多技术栈协同逻辑，在每一次构建与重构中完成从“跑通代码”到“理解原理”的进化。
+      </p>
     </td>
-    <td width="46%" valign="top">
-<pre lang="typescript"><code>interface AI_Native_Beginner {
-  readonly id: string;
-  status: string;
-  paradigm: string;
-  learningLoop: string[];
-  currentlyDecoding: string[];
-  philosophy: string;
-}
-
-const bbylw: AI_Native_Beginner = {
+    <td width="48%" valign="top">
+      <p>
+        <img src="https://img.shields.io/badge/TS-bbylw.profile.ts-0ea5e9?style=flat-square&logo=typescript&logoColor=white" alt="TS Profile" />
+      </p>
+<pre lang="typescript"><code>const bbylw = {
   id: "bbylw",
-  status: "Coding Beginner / 编程小白 🌱",
-  paradigm: "Vibe Coding + AI Pair Programming",
+  status: "AI-Native Beginner / 编程小白 🌱",
+  paradigm: "Vibe Coding + AI Pair Architect",
   learningLoop: [
-    "1. Spark an Idea & Vibe Code Prototype",
-    "2. Break Things & Debug with AI",
-    "3. Reverse-Engineer the Fundamentals",
-    "4. Iterate & Level Up Daily"
+    "01. Spark Idea &amp; Vibe Code Prototype",
+    "02. Break Things &amp; Debug with AI",
+    "03. Reverse-Engineer Fundamentals",
+    "04. Refactor &amp; Level Up Daily"
   ],
-  currentlyDecoding: [
-    "TypeScript & JavaScript Basics",
-    "React Native Cross-Platform UI",
-    "SQL & NoSQL Database Logic"
+  decoding: [
+    "TypeScript &amp; JavaScript Core",
+    "React Native &amp; Expo Cross-Platform",
+    "SQL &amp; NoSQL Database Logic"
   ],
-  philosophy: "Start with the vibe, master the code. 🚀"
-};</code></pre>
+  motto: "Start with the vibe, master the code. 🚀"
+} as const;</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td width="52%" valign="top">
+      <p>
+        <b>💡 Core Vibe / 核心探索方向</b><br/><br/>
+        <img src="https://img.shields.io/badge/Vibe_Coding-6366f1?style=flat-square" alt="Vibe Coding" />
+        <img src="https://img.shields.io/badge/Learning_by_Building-8b5cf6?style=flat-square" alt="Learning by Building" />
+        <img src="https://img.shields.io/badge/AI_Debugging-0ea5e9?style=flat-square" alt="AI Debugging" />
+        <img src="https://img.shields.io/badge/Tech_Orchestration-10b981?style=flat-square" alt="Tech Orchestration" /><br/>
+        <sub>以真实项目驱动学习，在与 AI 协同除错与重构中摸清工程脉络。</sub>
+      </p>
+    </td>
+    <td width="48%" valign="top">
+      <p>
+        <b>🌱 Currently Grinding / 正在深耕领域</b><br/><br/>
+        <img src="https://img.shields.io/badge/TypeScript_Basics-007ACC?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+        <img src="https://img.shields.io/badge/React_Native_%26_Expo-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React Native" />
+        <img src="https://img.shields.io/badge/Database_Concepts-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="Database" /><br/>
+        <sub>向下扎根语言核心语法、跨端移动界面开发与数据库底层逻辑。</sub>
+      </p>
     </td>
   </tr>
 </table>
